@@ -1,0 +1,301 @@
+﻿<Window x:Class="SeniorCtzz.ConfirmationRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeniorCtzz"
+        Height="630" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="ReviewLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#9CA3AF"/>
+            <Setter Property="Margin" Value="0,0,0,3"/>
+        </Style>
+        <Style x:Key="ReviewValueStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+        </Style>
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10" Padding="20,0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F9FAFB"/>
+                                <Setter Property="BorderBrush" Value="#9CA3AF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ConfirmButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="20,0">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.12" Color="#111827"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#374151"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Main card -->
+        <Border Background="White" CornerRadius="20" Width="470"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Padding="28,24,28,24">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" ShadowDepth="0" Opacity="0.25" Color="#000000"/>
+            </Border.Effect>
+            <StackPanel>
+
+                <!-- Header -->
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Width="38" Height="38" CornerRadius="19"
+                            Background="#F3F4F6" Margin="0,0,12,0">
+                        <TextBlock Text="✓" FontSize="17" FontWeight="Bold"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="#111827"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="Confirm Registration" FontSize="17" FontWeight="Bold" Foreground="#111827"/>
+                        <TextBlock Text="Please review all details before saving" FontSize="11"
+                                   Foreground="#9CA3AF" Margin="0,2,0,0"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Width="30" Height="30" Background="Transparent"
+                            BorderThickness="0" Cursor="Hand" Click="BtnClose_Click" VerticalAlignment="Top">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#F3F4F6" CornerRadius="15">
+                                    <TextBlock Text="✕" FontSize="11" Foreground="#6B7280"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#E5E7EB"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <Border Height="1" Background="#F3F4F6" Margin="0,12,0,14"/>
+
+                <!-- ROW 1: Names -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="65"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="LAST NAME" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewLastName" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="FIRST NAME" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewFirstName" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="MIDDLE NAME" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewMiddleName" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <TextBlock Text="SUFFIX" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewSuffix" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ROW 2: Sex, Birth Date, Age, Status -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="SEX" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewSex" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="BIRTH DATE" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewBirthDate" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="AGE" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewAge" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <TextBlock Text="STATUS" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewStatus" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ROW 3: OSCA ID, Date Issued -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="OSCA I.D." Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewOscaId" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="DATE OF ISSUED" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewDateIssued" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ROW 4: Pension Type + Assistance Source (SEPARATE columns) -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Pension Type: SSS / GSIS -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="PENSION TYPE" Style="{StaticResource ReviewLabelStyle}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#EFF6FF" CornerRadius="5" Padding="6,3" Margin="0,2,0,0">
+                                    <TextBlock x:Name="TxtReviewPensionType"
+                                               FontSize="12" FontWeight="SemiBold"
+                                               Foreground="#1D4ED8"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Assistance Source: LGU / DSWD / WAITLIST -->
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="ASSISTANCE SOURCE" Style="{StaticResource ReviewLabelStyle}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#F0FDF4" CornerRadius="5" Padding="6,3" Margin="0,2,0,0">
+                                    <TextBlock x:Name="TxtReviewAssistanceSource"
+                                               FontSize="12" FontWeight="SemiBold"
+                                               Foreground="#15803D"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ROW 5: Blood Type + Residency -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="BLOOD TYPE" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewBloodType" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="RESIDENCY" Style="{StaticResource ReviewLabelStyle}"/>
+                            <TextBlock x:Name="TxtReviewResidency" Style="{StaticResource ReviewValueStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ROW 6: Barangay -->
+                <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="BARANGAY" Style="{StaticResource ReviewLabelStyle}"/>
+                        <TextBlock x:Name="TxtReviewBarangay" Style="{StaticResource ReviewValueStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Warning -->
+                <Border Background="#FFFBEB" BorderBrush="#FDE68A" BorderThickness="1"
+                        CornerRadius="10" Padding="12,10" Margin="0,0,0,16">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="⚠" FontSize="13" Foreground="#D97706"
+                                   VerticalAlignment="Top" Margin="0,0,8,0"/>
+                        <TextBlock TextWrapping="Wrap" FontSize="11" Foreground="#92400E"
+                                   LineHeight="16" Width="360">
+                            Please make sure all information is correct before registering.
+                            You cannot edit after submission.
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <!-- Buttons -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Click="BtnBackToEdit_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="←  " FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Text="Back" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" Style="{StaticResource ConfirmButtonStyle}" Click="BtnConfirmRegister_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="✓  " FontSize="14" VerticalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="Confirm &amp; Register" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,1074 @@
+﻿<Window x:Class="SeniorCtzz.Staffreports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeniorCtzz"
+        mc:Ignorable="d"
+        Title="(Staff Encoder) - Reports"
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized"
+        Background="#F1F5F9">
+
+    <Window.Resources>
+        <Style x:Key="SideNavStyle" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,3,0,3"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Margin="8,2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1D4ED8"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SideNavActiveStyle" TargetType="Button" BasedOn="{StaticResource SideNavStyle}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#1E3A8A"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DBEAFE"/>
+                    <Setter Property="Foreground" Value="#1E3A8A"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MainTabStyle" TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F9FAFB"/>
+                                <Setter Property="BorderBrush" Value="#9CA3AF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MainTabActiveStyle" TargetType="Button" BasedOn="{StaticResource MainTabStyle}">
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#111827"/>
+        </Style>
+        <Style x:Key="SubTabStyle" TargetType="Button" BasedOn="{StaticResource MainTabStyle}">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        <Style x:Key="SubTabActiveStyle" TargetType="Button" BasedOn="{StaticResource SubTabStyle}">
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#111827"/>
+        </Style>
+        <Style x:Key="ExportPdfStyle" TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Background" Value="#DC2626"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExportCsvStyle" TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Background" Value="#059669"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ComboStyle" TargetType="ComboBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border Background="White"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Text="{TemplateBinding SelectionBoxItem}"
+                                           Margin="10,0,0,0" VerticalAlignment="Center"
+                                           Foreground="#111827" FontSize="12"
+                                           TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Grid.Column="1" Text="▾" FontSize="10"
+                                           Foreground="#6B7280"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ToggleButton Grid.ColumnSpan="2"
+                                              IsChecked="{Binding IsDropDownOpen,
+                                                RelativeSource={RelativeSource TemplatedParent},
+                                                Mode=TwoWay}"
+                                              Background="Transparent" BorderThickness="0" Opacity="0"/>
+                                <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       Placement="Bottom" AllowsTransparency="True">
+                                    <Border Background="White" BorderBrush="#E5E7EB"
+                                            BorderThickness="1" CornerRadius="8"
+                                            MinWidth="{TemplateBinding ActualWidth}"
+                                            Margin="0,2,0,0">
+                                        <ScrollViewer MaxHeight="200">
+                                            <ItemsPresenter/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style x:Key="GridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F8FAFC"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#E5E7EB"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#D1D5DB"/>
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="ColumnHeaderHeight" Value="36"/>
+            <Setter Property="RowHeight" Value="32"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ColumnWidth" Value="*"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F1F5F9"/>
+                        <Setter Property="Foreground" Value="#374151"/>
+                        <Setter Property="FontSize" Value="10"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="10,8"/>
+                        <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LogoutButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#FEF2F2"/>
+            <Setter Property="Foreground" Value="#DC2626"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="#FECACA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FEE2E2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ── Signature block label ── -->
+        <Style x:Key="SigLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin" Value="0,0,0,18"/>
+        </Style>
+        <Style x:Key="SigNameStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="TextDecorations" Value="Underline"/>
+        </Style>
+        <Style x:Key="SigTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ══ BLUE SIDEBAR ══ -->
+        <Border Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1E3A8A" Offset="0"/>
+                    <GradientStop Color="#1E40AF" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.15" Color="Black"/>
+            </Border.Effect>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,32,0,28">
+                    <Border Width="60" Height="60" CornerRadius="30" Background="White"
+                            HorizontalAlignment="Center" Margin="0,0,0,12">
+                        <TextBlock x:Name="txtAvatarInitials" Text="AJ" FontSize="20" FontWeight="Bold"
+                                   Foreground="#1E3A8A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock x:Name="txtUserName" Text="Staff User" FontSize="13" FontWeight="SemiBold"
+                               Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                    <Border Background="#DBEAFE" CornerRadius="10" Padding="10,3"
+                            HorizontalAlignment="Center" Margin="0,4,0,20">
+                        <TextBlock x:Name="txtUserRole" Text="Staff Encoder" FontSize="10"
+                                   Foreground="#1E40AF" HorizontalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <Button DockPanel.Dock="Bottom" Margin="16,0,16,24" Height="40"
+                        Style="{StaticResource LogoutButtonStyle}"
+                        Click="BtnLogout_Click" Content="Logout"/>
+                <StackPanel Margin="16,0,16,0">
+                    <Button Content="DASHBOARD"    Style="{StaticResource SideNavStyle}"       Click="BtnDashboard_Click"/>
+                    <Button Content="Register"     Style="{StaticResource SideNavStyle}"       Click="BtnRegister_Click"/>
+                    <Button Content="Release"      Style="{StaticResource SideNavStyle}"       Click="BtnAICS_Click"/>
+                    <Button Content="Pension List" Style="{StaticResource SideNavStyle}"       Click="BtnPensionList_Click"/>
+                    <Button Content="Reports"      Style="{StaticResource SideNavActiveStyle}"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- ══ MAIN AREA ══ -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header bar -->
+            <Border Grid.Row="0" Background="White" BorderBrush="#E5E7EB"
+                    BorderThickness="0,0,0,1" Padding="28,18,28,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Reports" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                        <TextBlock x:Name="TxtSubtitle" Text="Barangay List" FontSize="12"
+                                   Foreground="#6B7280" Margin="0,2,0,0"/>
+                    </StackPanel>
+                    <Border Grid.Column="1" Background="#F9FAFB" BorderBrush="#E5E7EB"
+                            BorderThickness="1" CornerRadius="8" Padding="12,6">
+                        <TextBlock x:Name="TxtDateBadge" Text="" FontSize="11" FontWeight="SemiBold"
+                                   Foreground="#374151" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Main tabs -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
+                <Button x:Name="btnBarangayList" Content="BARANGAY LIST"
+                        Style="{StaticResource MainTabActiveStyle}" Click="BtnBarangayList_Click"/>
+                <Button x:Name="btnOverAllSC"    Content="OVER-ALL SC"
+                        Style="{StaticResource MainTabStyle}"       Click="BtnOverAllSC_Click"/>
+                <Button x:Name="btnPension"      Content="PENSION"
+                        Style="{StaticResource MainTabStyle}"       Click="BtnPension_Click"/>
+            </StackPanel>
+
+            <!-- Pension sub-tabs -->
+            <Border x:Name="pnlPensionSubTabs" Grid.Row="2" Margin="28,10,28,0"
+                    Visibility="Collapsed" Background="White" BorderBrush="#E5E7EB"
+                    BorderThickness="1" CornerRadius="10" Padding="10,8">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnQuarterly" Content="Quarterly"
+                            Style="{StaticResource SubTabStyle}" Click="BtnQuarterly_Click"/>
+                    <Button x:Name="btnAICS"      Content="AICS"
+                            Style="{StaticResource SubTabStyle}" Click="BtnAICSReport_Click"/>
+                    <Button x:Name="btnAPR"       Content="APR"
+                            Style="{StaticResource SubTabStyle}" Click="BtnAPR_Click"/>
+                    <Button x:Name="btnBereaved"  Content="BEREAVED"
+                            Style="{StaticResource SubTabStyle}" Margin="0" Click="BtnBereaved_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- ══ CONTENT PANELS ══ -->
+            <ScrollViewer Grid.Row="3" Margin="28,14,28,0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+
+                    <!-- ══════════════════════════
+                         BARANGAY LIST
+                    ══════════════════════════ -->
+                    <StackPanel x:Name="pnlBarangayList" Visibility="Visible">
+
+                        <!-- Filter bar -->
+                        <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="10" Padding="14,12" Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="LIST OF SENIOR CITIZEN'S BARANGAY:"
+                                           FontSize="11" FontWeight="SemiBold"
+                                           Foreground="#374151" VerticalAlignment="Center"
+                                           Margin="0,0,10,0"/>
+                                <ComboBox x:Name="cmbReportBarangay" Style="{StaticResource ComboStyle}"
+                                          Width="170" Margin="0,0,10,0"
+                                          SelectionChanged="FilterReport_SelectionChanged"/>
+                                <TextBlock Text="AS OF:" FontSize="11" FontWeight="SemiBold"
+                                           Foreground="#374151" VerticalAlignment="Center"
+                                           Margin="0,0,10,0"/>
+                                <ComboBox x:Name="cmbReportAsOf" Style="{StaticResource ComboStyle}"
+                                          Width="140"
+                                          SelectionChanged="FilterReport_SelectionChanged"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Data table -->
+                        <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="12" Padding="0">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0"
+                                                  Opacity="0.04" Color="#000"/>
+                            </Border.Effect>
+                            <DataGrid x:Name="dgBarangayList" Style="{StaticResource GridStyle}"
+                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NO"          Binding="{Binding No}"         Width="40"/>
+                                    <DataGridTextColumn Header="LAST NAME"   Binding="{Binding LastName}"   Width="*"/>
+                                    <DataGridTextColumn Header="FIRST NAME"  Binding="{Binding FirstName}"  Width="*"/>
+                                    <DataGridTextColumn Header="MIDDLE NAME" Binding="{Binding MiddleName}" Width="*"/>
+                                    <DataGridTextColumn Header="SUFFIX"      Binding="{Binding Suffix}"     Width="55"/>
+                                    <DataGridTextColumn Header="SEX"         Binding="{Binding Sex}"        Width="45"/>
+                                    <DataGridTextColumn Header="BIRTH DATE"  Binding="{Binding BirthDate}"  Width="90"/>
+                                    <DataGridTextColumn Header="AGE"         Binding="{Binding Age}"        Width="45"/>
+                                    <DataGridTextColumn Header="STATUS"      Binding="{Binding Status}"     Width="70"/>
+                                    <DataGridTextColumn Header="OSCA I.D."   Binding="{Binding OscaId}"     Width="110"/>
+                                    <DataGridTextColumn Header="DATE ISSUED" Binding="{Binding DateIssued}" Width="95"/>
+                                    <DataGridTextColumn Header="BLOOD TYPE"  Binding="{Binding BloodType}"  Width="80"/>
+                                    <DataGridTextColumn Header="LGU"         Binding="{Binding Lgu}"        Width="50"/>
+                                    <DataGridTextColumn Header="DSWD"        Binding="{Binding Dswd}"       Width="55"/>
+                                    <DataGridTextColumn Header="SSS"         Binding="{Binding Sss}"        Width="50"/>
+                                    <DataGridTextColumn Header="GSIS"        Binding="{Binding Gsis}"       Width="55"/>
+                                    <DataGridTextColumn Header="WAITLIST"    Binding="{Binding Waitlist}"   Width="70"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <!-- ══ SIGNATURE BLOCK — Barangay List
+                             PREPARED BY | CHECKED BY | NOTED BY  ══ -->
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="10"
+                                Padding="20,16" Margin="0,16,0,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- PREPARED BY -->
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="PREPARED BY:"
+                                               Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtBrgySigPreparedName"
+                                               Style="{StaticResource SigNameStyle}"/>
+                                    <TextBlock Text="ENCODER"
+                                               Style="{StaticResource SigTitleStyle}"/>
+                                </StackPanel>
+
+                                <!-- CHECKED BY (Admin) -->
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                    <TextBlock Text="CHECKED BY:"
+                                               Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtBrgySigCheckedName"
+                                               Text="REBECCA A. REYES"
+                                               Style="{StaticResource SigNameStyle}"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="ADMIN AIDE II"
+                                               Style="{StaticResource SigTitleStyle}"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <!-- NOTED BY -->
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                    <TextBlock Text="NOTED BY:"
+                                               Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock Text="DAISY JANE R. ACERO, RSW"
+                                               Style="{StaticResource SigNameStyle}"
+                                               HorizontalAlignment="Right"/>
+                                    <TextBlock Text="SWO-III/ SC-Focal Person"
+                                               Style="{StaticResource SigTitleStyle}"
+                                               HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- ══════════════════════════
+                         OVER-ALL SC  (unchanged structure, kept as-is)
+                    ══════════════════════════ -->
+                    <StackPanel x:Name="pnlOverAllSC" Visibility="Collapsed">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Disabled">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" CornerRadius="0" Margin="0,0,0,10" ClipToBounds="True">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="32"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0" Background="#1E3A8A">
+                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock Text="REPUBLIC OF THE PHILIPPINES" FontSize="9" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="PROVINCE OF MISAMIS ORIENTAL" FontSize="9" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Row="1" Background="#B91C1C" Padding="12,10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0" Width="72" Height="72" CornerRadius="36" Background="White"
+                                                        Margin="8,0,16,0" VerticalAlignment="Center" BorderBrush="#FCD34D" BorderThickness="2">
+                                                    <Image Source="/Assets/logo1.png" Width="68" Height="68"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                                                </Border>
+                                                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <TextBlock Text="GINGOOG CITY" FontSize="32" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="CITY SOCIAL WELFARE &amp; DEVELOPMENT OFFICE" FontSize="11" Foreground="#FCD34D" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <Border Grid.Row="1" Background="White" BorderBrush="#374151" BorderThickness="2" CornerRadius="4" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <Border Background="White" Padding="0,14" BorderBrush="#374151" BorderThickness="0,0,0,2">
+                                            <TextBlock x:Name="txtOverAllTitle" FontSize="12" FontWeight="Bold" Foreground="#111827" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" Background="White" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="NO." FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="1" Background="White" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="BARANGAY" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="2" Background="#EAB308" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="NATIONAL PENSIONER" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#1C1917"/>
+                                            </Border>
+                                            <Border Grid.Column="3" Background="#22C55E" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="LOCAL PENSIONER" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="4" Background="#FCA5A5" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="WAITLIST" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#7F1D1D"/>
+                                            </Border>
+                                            <Border Grid.Column="5" Background="#22C55E" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="SSS" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="6" Background="#22C55E" BorderBrush="#9CA3AF" BorderThickness="0,0,1,1" Padding="4,10">
+                                                <TextBlock Text="GSIS" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="7" Background="#93C5FD" BorderBrush="#9CA3AF" BorderThickness="0,0,0,1" Padding="4,10">
+                                                <TextBlock Text="TOTAL" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                            </Border>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0"  Background="White"   BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7"/>
+                                            <Border Grid.Column="1"  Background="White"   BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7"/>
+                                            <Border Grid.Column="2"  Background="#FEF08A" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#713F12"/>
+                                            </Border>
+                                            <Border Grid.Column="3"  Background="#FEF08A" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#713F12"/>
+                                            </Border>
+                                            <Border Grid.Column="4"  Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="5"  Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="6"  Background="#FECACA" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#7F1D1D"/>
+                                            </Border>
+                                            <Border Grid.Column="7"  Background="#FECACA" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#7F1D1D"/>
+                                            </Border>
+                                            <Border Grid.Column="8"  Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="9"  Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="10" Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="11" Background="#86EFAC" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="12" Background="#BFDBFE" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1" Padding="2,7">
+                                                <TextBlock Text="MALE"   FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                            </Border>
+                                            <Border Grid.Column="13" Background="#BFDBFE" BorderBrush="#D1D5DB" BorderThickness="0,0,0,1" Padding="2,7">
+                                                <TextBlock Text="FEMALE" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                            </Border>
+                                        </Grid>
+                                        <ItemsControl x:Name="icOverAllSC">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40"/>
+                                                            <ColumnDefinition Width="100"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Grid.Column="0"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="4,9">
+                                                            <TextBlock Text="{Binding No}"          FontSize="11" FontWeight="Bold"     HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="1"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="6,9">
+                                                            <TextBlock Text="{Binding Barangay}"    FontSize="11" FontWeight="SemiBold" Foreground="#111827"/>
+                                                        </Border>
+                                                        <Border Grid.Column="2"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding NatMale}"     FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="3"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding NatFemale}"   FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="4"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding LocMale}"     FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="5"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding LocFemale}"   FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="6"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding WaitMale}"    FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="7"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding WaitFemale}"  FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="8"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding SssMale}"     FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="9"  BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding SssFemale}"   FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="10" BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding GsisMale}"    FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="11" BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding GsisFemale}"  FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                                                        </Border>
+                                                        <Border Grid.Column="12" BorderBrush="#E5E7EB" BorderThickness="0,0,1,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding TotalMale}"   FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                                        </Border>
+                                                        <Border Grid.Column="13" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1" Padding="2,9">
+                                                            <TextBlock Text="{Binding TotalFemale}" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                                        </Border>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <Grid x:Name="gridOverAllTotals" Background="#F3F4F6">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="4,8"/>
+                                            <Border Grid.Column="1"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="4,8"/>
+                                            <Border Grid.Column="2"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotNatM"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="3"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotNatF"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="4"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotLocM"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="5"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotLocF"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="6"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotWaitM" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="7"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotWaitF" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="8"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotSssM"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="9"  BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotSssF"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="10" BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotGsisM" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="11" BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotGsisF" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#111827"/>
+                                            </Border>
+                                            <Border Grid.Column="12" BorderBrush="#9CA3AF" BorderThickness="0,2,1,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotTotM"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                            </Border>
+                                            <Border Grid.Column="13" BorderBrush="#9CA3AF" BorderThickness="0,2,0,1" Padding="2,8">
+                                                <TextBlock x:Name="txtTotTotF"  FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E3A8A"/>
+                                            </Border>
+                                        </Grid>
+                                        <Grid Height="34" Margin="140,8,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" Background="#EAB308" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandNat"   HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#1C1917"/>
+                                            </Border>
+                                            <Border Grid.Column="1" Background="#22C55E" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandLoc"   HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="2" Background="#FCA5A5" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandWait"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#7F1D1D"/>
+                                            </Border>
+                                            <Border Grid.Column="3" Background="#86EFAC" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandSss"   HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="4" Background="#86EFAC" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandGsis"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#14532D"/>
+                                            </Border>
+                                            <Border Grid.Column="5" Background="#93C5FD" Margin="1,0">
+                                                <TextBlock x:Name="txtGrandTotal" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Foreground="#1E3A8A"/>
+                                            </Border>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Signatures for Overall SC — already have prepared/noted  -->
+                                <Grid Grid.Row="2" Margin="0,10,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="4,0">
+                                        <TextBlock Text="PREPARED BY:" FontSize="10" FontWeight="Bold" Foreground="#374151"/>
+                                        <TextBlock Text="" Margin="0,16,0,0"/>
+                                        <TextBlock x:Name="txtPreparedByName" Text="MADLEIN G. PILOTON" FontWeight="Bold" FontSize="12" TextDecorations="Underline" Foreground="#111827"/>
+                                        <TextBlock Text="SENIOR CITIZENS STAFF ENCODER" FontSize="10" Foreground="#6B7280"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,4,0">
+                                        <TextBlock Text="Noted by:" FontSize="10" FontWeight="Bold" Foreground="#374151"/>
+                                        <TextBlock Text="" Margin="0,16,0,0"/>
+                                        <TextBlock Text="DAISY JANE R. ACERO, RSW" FontWeight="Bold" FontSize="12" TextDecorations="Underline" Foreground="#111827"/>
+                                        <TextBlock Text="SWO-III/ SC-Focal Person" FontSize="10" Foreground="#6B7280"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Border Grid.Row="3" CornerRadius="8" ClipToBounds="True" Margin="0,0,0,14">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="320"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="#3B4B8C" Padding="16,12">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                    <Border Width="18" Height="18" CornerRadius="9" Background="#EAB308" Margin="0,0,8,0">
+                                                        <TextBlock Text="G" FontSize="9" FontWeight="Bold" Foreground="#1C1917" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="GOOD GOVERNANCE, TRANSPARENCY AND ACCOUNTABILITY" FontSize="9.5" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                    <Border Width="18" Height="18" CornerRadius="9" Background="#F97316" Margin="0,0,8,0">
+                                                        <TextBlock Text="O" FontSize="9" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="OPPORTUNITIES FOR AGRICULTURE AND TOURISM DEVELOPMENT" FontSize="9.5" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                    <Border Width="18" Height="18" CornerRadius="9" Background="#22C55E" Margin="0,0,8,0">
+                                                        <TextBlock Text="L" FontSize="9" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="LIVELIHOOD DEVELOPMENT AND IMPLEMENTATION" FontSize="9.5" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                    <Border Width="18" Height="18" CornerRadius="9" Background="#EF4444" Margin="0,0,8,0">
+                                                        <TextBlock Text="D" FontSize="9" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="DELIVERY OF HEALTH, EDUCATION AND SOCIAL SERVICES" FontSize="9.5" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1" Background="#B91C1C" Padding="20,12">
+                                            <StackPanel VerticalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    <TextBlock Text="Together, we " FontSize="14" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="C" FontSize="14" FontWeight="Bold" Foreground="#EF4444" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="an Unite" FontSize="14" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <TextBlock Text="CSWDgingoogcity@gmail.com" FontSize="9.5" Foreground="#FCA5A5" HorizontalAlignment="Right" Margin="0,6,0,0"/>
+                                                <TextBlock Text="Tel. # 861-3163" FontSize="9.5" Foreground="#FCA5A5" HorizontalAlignment="Right"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </ScrollViewer>
+                    </StackPanel>
+
+                    <!-- ══════════════════════════
+                         PENSION PANELS — each has a
+                         PREPARED BY | NOTED BY footer
+                         (no Checked By / Admin Aide II)
+                    ══════════════════════════ -->
+
+                    <!-- Quarterly -->
+                    <StackPanel x:Name="pnlQuarterly" Visibility="Collapsed">
+                        <TextBlock Text="Quarterly" FontSize="16" FontWeight="Bold"
+                                   Foreground="#111827" Margin="0,0,0,10"/>
+                        <Border Background="White" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="12">
+                            <DataGrid x:Name="dgQuarterly" Style="{StaticResource GridStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NO"         Binding="{Binding No}"        Width="50"/>
+                                    <DataGridTextColumn Header="DATE"       Binding="{Binding Date}"      Width="100"/>
+                                    <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" Width="*"/>
+                                    <DataGridTextColumn Header="LAST NAME"  Binding="{Binding LastName}"  Width="*"/>
+                                    <DataGridTextColumn Header="BRGY"       Binding="{Binding Brgy}"      Width="90"/>
+                                    <DataGridTextColumn Header="AMOUNT"     Binding="{Binding Amount}"    Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="0,0,10,10" Padding="14,10" Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total" FontWeight="Bold" Foreground="#111827" Width="420"/>
+                                <TextBlock x:Name="txtQuarterlyTotal" FontWeight="Bold" Foreground="#111827" FontSize="14"/>
+                            </StackPanel>
+                        </Border>
+                        <!-- Signature: PREPARED BY | NOTED BY -->
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="10" Padding="20,16" Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="PREPARED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtPensionSigPreparedName" Style="{StaticResource SigNameStyle}"/>
+                                    <TextBlock Text="ENCODER" Style="{StaticResource SigTitleStyle}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                    <TextBlock Text="NOTED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock Text="DAISY JANE R. ACERO, RSW"
+                                               Style="{StaticResource SigNameStyle}" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="SWO-III/ SC-Focal Person"
+                                               Style="{StaticResource SigTitleStyle}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- AICS -->
+                    <StackPanel x:Name="pnlAICS" Visibility="Collapsed">
+                        <TextBlock Text="AICS" FontSize="16" FontWeight="Bold"
+                                   Foreground="#111827" Margin="0,0,0,10"/>
+                        <Border Background="White" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="12">
+                            <DataGrid x:Name="dgAICS" Style="{StaticResource GridStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NO"         Binding="{Binding No}"        Width="50"/>
+                                    <DataGridTextColumn Header="DATE"       Binding="{Binding Date}"      Width="100"/>
+                                    <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" Width="*"/>
+                                    <DataGridTextColumn Header="LAST NAME"  Binding="{Binding LastName}"  Width="*"/>
+                                    <DataGridTextColumn Header="BRGY"       Binding="{Binding Brgy}"      Width="90"/>
+                                    <DataGridTextColumn Header="AMOUNT"     Binding="{Binding Amount}"    Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="0,0,10,10" Padding="14,10" Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total" FontWeight="Bold" Foreground="#111827" Width="420"/>
+                                <TextBlock x:Name="txtAICSTotal" FontWeight="Bold" Foreground="#111827" FontSize="14"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="10" Padding="20,16" Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="PREPARED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtAICSSigPreparedName" Style="{StaticResource SigNameStyle}"/>
+                                    <TextBlock Text="ENCODER" Style="{StaticResource SigTitleStyle}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                    <TextBlock Text="NOTED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock Text="DAISY JANE R. ACERO, RSW"
+                                               Style="{StaticResource SigNameStyle}" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="SWO-III/ SC-Focal Person"
+                                               Style="{StaticResource SigTitleStyle}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- APR -->
+                    <StackPanel x:Name="pnlAPR" Visibility="Collapsed">
+                        <TextBlock Text="APR" FontSize="16" FontWeight="Bold"
+                                   Foreground="#111827" Margin="0,0,0,10"/>
+                        <Border Background="White" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="12">
+                            <DataGrid x:Name="dgAPR" Style="{StaticResource GridStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NO"         Binding="{Binding No}"        Width="50"/>
+                                    <DataGridTextColumn Header="DATE"       Binding="{Binding Date}"      Width="100"/>
+                                    <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" Width="*"/>
+                                    <DataGridTextColumn Header="LAST NAME"  Binding="{Binding LastName}"  Width="*"/>
+                                    <DataGridTextColumn Header="BRGY"       Binding="{Binding Brgy}"      Width="90"/>
+                                    <DataGridTextColumn Header="AMOUNT"     Binding="{Binding Amount}"    Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="0,0,10,10" Padding="14,10" Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total" FontWeight="Bold" Foreground="#111827" Width="420"/>
+                                <TextBlock x:Name="txtAPRTotal" FontWeight="Bold" Foreground="#111827" FontSize="14"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="10" Padding="20,16" Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="PREPARED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtAPRSigPreparedName" Style="{StaticResource SigNameStyle}"/>
+                                    <TextBlock Text="ENCODER" Style="{StaticResource SigTitleStyle}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                    <TextBlock Text="NOTED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock Text="DAISY JANE R. ACERO, RSW"
+                                               Style="{StaticResource SigNameStyle}" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="SWO-III/ SC-Focal Person"
+                                               Style="{StaticResource SigTitleStyle}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- BEREAVED -->
+                    <StackPanel x:Name="pnlBereaved" Visibility="Collapsed">
+                        <TextBlock Text="BEREAVED" FontSize="16" FontWeight="Bold"
+                                   Foreground="#111827" Margin="0,0,0,10"/>
+                        <Border Background="White" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="12">
+                            <DataGrid x:Name="dgBereaved" Style="{StaticResource GridStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NO"           Binding="{Binding No}"           Width="50"/>
+                                    <DataGridTextColumn Header="DATE"         Binding="{Binding Date}"         Width="90"/>
+                                    <DataGridTextColumn Header="FIRST NAME"   Binding="{Binding FirstName}"    Width="*"/>
+                                    <DataGridTextColumn Header="LAST NAME"    Binding="{Binding LastName}"     Width="*"/>
+                                    <DataGridTextColumn Header="BRGY"         Binding="{Binding Brgy}"         Width="70"/>
+                                    <DataGridTextColumn Header="RECIPIENT"    Binding="{Binding RecipientName}" Width="160"/>
+                                    <DataGridTextColumn Header="RELATIONSHIP" Binding="{Binding Relationship}" Width="120"/>
+                                    <DataGridTextColumn Header="AMOUNT"       Binding="{Binding Amount}"       Width="90"/>
+                                    <DataGridTextColumn Header="REMARKS"      Binding="{Binding Remarks}"      Width="120"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="0,0,10,10" Padding="14,10" Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total" FontWeight="Bold" Foreground="#111827" Width="700"/>
+                                <TextBlock x:Name="txtBereavedTotal" FontWeight="Bold" Foreground="#111827" FontSize="14"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="10" Padding="20,16" Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="PREPARED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock x:Name="TxtBereavedSigPreparedName" Style="{StaticResource SigNameStyle}"/>
+                                    <TextBlock Text="ENCODER" Style="{StaticResource SigTitleStyle}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                    <TextBlock Text="NOTED BY:" Style="{StaticResource SigLabelStyle}"/>
+                                    <TextBlock Text="DAISY JANE R. ACERO, RSW"
+                                               Style="{StaticResource SigNameStyle}" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="SWO-III/ SC-Focal Person"
+                                               Style="{StaticResource SigTitleStyle}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
+
+            <!-- ══ EXPORT FOOTER ══ -->
+            <Border Grid.Row="4" Background="White" BorderBrush="#E5E7EB"
+                    BorderThickness="0,1,0,0" Padding="28,14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Background="#F9FAFB" BorderBrush="#E5E7EB"
+                                BorderThickness="1" CornerRadius="6" Padding="10,5">
+                            <TextBlock x:Name="TxtExportStatus" Text="Ready to export"
+                                       FontSize="11" Foreground="#374151"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="EXPORT" VerticalAlignment="Center" FontSize="11"
+                                   FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,14,0"/>
+                        <Button Content="📄  PDF" Style="{StaticResource ExportPdfStyle}" Click="BtnExportPdf_Click"/>
+                        <Button Content="📊  CSV" Style="{StaticResource ExportCsvStyle}" Click="BtnExportCsv_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
