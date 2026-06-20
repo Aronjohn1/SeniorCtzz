@@ -10,9 +10,7 @@ using static SeniorCtzz.Models;
 
 namespace SeniorCtzz
 {
-    // ═══════════════════════════════════════════════════════════════════
-    //  DATABASE CONNECTION HELPER
-    // ═══════════════════════════════════════════════════════════════════
+
     public static class DBConnection
     {
         private static readonly string _dbPath =
@@ -46,9 +44,7 @@ namespace SeniorCtzz
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════════
-    //  STAFF / USERS QUERIES
-    // ═══════════════════════════════════════════════════════════════════
+ 
     public static class StaffDB
     {
         private static readonly string _masterPassword = "OSCA2024!Secret";
@@ -285,14 +281,10 @@ namespace SeniorCtzz
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════════
-    //  SENIOR CITIZEN QUERIES
-    // ═══════════════════════════════════════════════════════════════════
+
     public static class SeniorDB
     {
-        // ─────────────────────────────────────────────────────────────
-        // GET BY BARANGAY
-        // ─────────────────────────────────────────────────────────────
+  
         public static ObservableCollection<BarangayListItem> GetByBarangay(string barangayName)
         {
             var list = new ObservableCollection<BarangayListItem>();
@@ -315,8 +307,7 @@ namespace SeniorCtzz
                 int no = 1;
                 while (reader.Read())
                 {
-                    // ── Pension Type  : SSS / GSIS  (from pension_type column)
-                    // ── Assist Source : LGU / DSWD / WAITLIST (from assistance_source column)
+              
                     string pt = reader["pension_type"]?.ToString() ?? "";
                     string ast = reader["assistance_source"]?.ToString() ?? "";
 
@@ -351,9 +342,7 @@ namespace SeniorCtzz
             return list;
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // GET BARANGAY NAMES
-        // ─────────────────────────────────────────────────────────────
+   
         public static ObservableCollection<string> GetBarangayNames()
         {
             var list = new ObservableCollection<string>();
@@ -371,9 +360,7 @@ namespace SeniorCtzz
             return list;
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // COUNT HELPERS
-        // ─────────────────────────────────────────────────────────────
+    
         public static int GetActiveCount()
         {
             try
@@ -431,9 +418,7 @@ namespace SeniorCtzz
             catch { return 0; }
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // SEARCH
-        // ─────────────────────────────────────────────────────────────
+ 
         public static ObservableCollection<SeniorSearchItem> Search(string keyword)
         {
             var list = new ObservableCollection<SeniorSearchItem>();
@@ -470,9 +455,7 @@ namespace SeniorCtzz
             return list;
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // OVERALL TOTALS REPORT
-        // ─────────────────────────────────────────────────────────────
+
         public static ObservableCollection<OverAllSCItem> GetOverAllTotals()
         {
             var list = new ObservableCollection<OverAllSCItem>();
@@ -481,8 +464,7 @@ namespace SeniorCtzz
                 using var conn = DBConnection.GetConnection();
                 conn.Open();
 
-                // Uses assistance_source for LGU/DSWD/WAITLIST checks
-                // Uses pension_type for SSS/GSIS checks
+           
                 string sql = @"
             SELECT 
                 sc.residency_classification,
@@ -567,9 +549,7 @@ namespace SeniorCtzz
             TotalFemale = "0"
         };
 
-        // ─────────────────────────────────────────────────────────────
-        // BARANGAY ID HELPERS
-        // ─────────────────────────────────────────────────────────────
+
         public static string GetBarangayId(string barangayName)
         {
             try
@@ -651,9 +631,7 @@ namespace SeniorCtzz
             return "Urban";
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // GENERATE SENIOR ID
-        // ─────────────────────────────────────────────────────────────
+   
         private static string GenerateSeniorId(OleDbConnection conn)
         {
             try
@@ -668,20 +646,16 @@ namespace SeniorCtzz
             catch { return $"SC-{DateTime.Now:yyyy}-{DateTime.Now:mmssff}"; }
         }
 
-        // ═════════════════════════════════════════════════════════════
-        // SAVE — NOW WITH SEPARATE pension_type AND assistance_source
-        //   pensionType      → SSS / GSIS only
-        //   assistanceSource → LGU / DSWD / WAITLIST only
-        // ═════════════════════════════════════════════════════════════
+    
         public static bool Save(string lastName, string firstName, string middleName,
                                 string suffix, string sex, DateTime birthDate,
                                 int age, string status, string oscaId,
                                 DateTime dateIssued, string barangayName,
-                                string pensionType,                          // SSS / GSIS
+                                string pensionType,            
                                 string bloodType = "",
                                 string residency = "",
                                 string encoderId = "",
-                                string assistanceSource = "")                // LGU / DSWD / WAITLIST
+                                string assistanceSource = "")             
         {
             try
             {
@@ -739,9 +713,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ─────────────────────────────────────────────────────────────
-        // GET ALL SENIORS
-        // ─────────────────────────────────────────────────────────────
+  
         public static ObservableCollection<BarangayListItem> GetAllSeniors()
         {
             var list = new ObservableCollection<BarangayListItem>();
@@ -762,8 +734,7 @@ namespace SeniorCtzz
                 int no = 1;
                 while (reader.Read())
                 {
-                    // pension_type     → SSS / GSIS
-                    // assistance_source → LGU / DSWD / WAITLIST
+              
                     string pt = reader["pension_type"]?.ToString() ?? "";
                     string ast = reader["assistance_source"]?.ToString() ?? "";
 
@@ -783,11 +754,11 @@ namespace SeniorCtzz
                         DateIssued = reader["date_of_issued"] != DBNull.Value
                                       ? Convert.ToDateTime(reader["date_of_issued"]).ToString("MM-dd-yy") : "",
                         BloodType = reader["blood_type"]?.ToString() ?? "",
-                        // Assistance Source — from assistance_source column
+                     
                         LGU = ast.ToUpper().Contains("LGU") ? "✔" : "",
                         DSWD = ast.ToUpper().Contains("DSWD") ? "✔" : "",
                         Waitlist = ast.ToUpper().Contains("WAITLIST") ? "✔" : "",
-                        // Pension Type — from pension_type column
+                   
                         Sss = pt.ToUpper().Contains("SSS") ? "✔" : "",
                         Gsis = pt.ToUpper().Contains("GSIS") ? "✔" : "",
                         PensionType = pt,
@@ -801,9 +772,7 @@ namespace SeniorCtzz
     }
 
 
-    // ═══════════════════════════════════════════════════════════════════
-    //  PENSION TRANSACTION QUERIES
-    // ═══════════════════════════════════════════════════════════════════
+
     public static class PensionDB
     {
         public static int GetCount(string type)
