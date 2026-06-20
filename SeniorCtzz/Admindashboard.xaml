@@ -12,7 +12,7 @@
 
     <Window.Resources>
 
-        <!-- ══════════ SIDEBAR NAV BUTTON ══════════ -->
+      
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="42"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -44,7 +44,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ ACTIVE NAV BUTTON ══════════ -->
+     
         <Style x:Key="NavButtonActiveStyle" TargetType="Button"
                BasedOn="{StaticResource NavButtonStyle}">
             <Setter Property="Background" Value="White"/>
@@ -58,7 +58,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- ══════════ LOGOUT BUTTON ══════════ -->
+ 
         <Style x:Key="LogoutButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#FFF1F2"/>
@@ -85,7 +85,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ STAT CARD ══════════ -->
+     
         <Style x:Key="StatCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -99,7 +99,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ ACCENT STAT CARD (Total SC) ══════════ -->
+    
         <Style x:Key="StatCardAccentStyle" TargetType="Border">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="CornerRadius" Value="14"/>
@@ -112,7 +112,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ SEARCH BOX ══════════ -->
+     
         <Style x:Key="SearchBoxStyle" TargetType="TextBox">
             <Setter Property="Height" Value="38"/>
             <Setter Property="FontSize" Value="13"/>
@@ -143,7 +143,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ SEARCH BUTTON ══════════ -->
+      
         <Style x:Key="SearchButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="38"/>
             <Setter Property="Height" Value="38"/>
@@ -168,7 +168,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ TABLE COLUMN HEADER — LIGHT/BLUE THEME ══════════ -->
+        
         <Style x:Key="DashboardColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#F1F5F9"/>
             <Setter Property="Foreground" Value="#1E293B"/>
@@ -192,7 +192,7 @@
             </Setter>
         </Style>
 
-        <!-- ══════════ TABLE CELL — LIGHT/BLUE THEME ══════════ -->
+     
         <Style x:Key="DashboardCellStyle" TargetType="DataGridCell">
             <Setter Property="Padding" Value="14,10,14,10"/>
             <Setter Property="BorderThickness" Value="0,0,1,1"/>
@@ -219,7 +219,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- ══════════ EXPORT BUTTON ══════════ -->
+ 
         <Style x:Key="ExportButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="36"/>
             <Setter Property="Padding" Value="14,0,14,0"/>
@@ -256,9 +256,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ══════════════════════════════════════════
-             SIDEBAR
-        ══════════════════════════════════════════ -->
+   
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -279,7 +277,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Avatar + Name + Role -->
+         
                 <StackPanel Grid.Row="0" HorizontalAlignment="Center"
                             Margin="16,30,16,22">
                     <Border Width="64" Height="64" CornerRadius="32"
@@ -308,18 +306,18 @@
                     </Border>
                 </StackPanel>
 
-                <!-- Nav Buttons -->
+         
                 <StackPanel Grid.Row="1" Margin="14,0,14,0" VerticalAlignment="Top">
-                    <Button Content="🏠   Dashboard"
+                    <Button Content="   Dashboard"
                             Style="{StaticResource NavButtonActiveStyle}"
                             Click="BtnDashboard_Click"/>
-                    <Button Content="👤   Staff Accounts"
+                    <Button Content="   Staff Accounts"
                             Style="{StaticResource NavButtonStyle}"
                             Click="BtnManageStaff_Click"/>
-                    <Button Content="📄   Pension List"
+                    <Button Content="   Pension List"
                             Style="{StaticResource NavButtonStyle}"
                             Click="BtnPensionList_Click"/>
-                    <Button Content="📊   Reports"
+                    <Button Content="   Reports"
                             Style="{StaticResource NavButtonStyle}"
                             Click="BtnReports_Click"/>
                 </StackPanel>
@@ -333,16 +331,14 @@
             </Grid>
         </Border>
 
-        <!-- ══════════════════════════════════════════
-             MAIN CONTENT
-        ══════════════════════════════════════════ -->
+     
         <Grid Grid.Column="1" Background="#F8F4F4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Top Header Bar -->
+ 
             <Border Grid.Row="0" Background="White" Padding="28,14,28,14">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="8" ShadowDepth="1"
@@ -364,7 +360,7 @@
                     <Border Grid.Column="1" CornerRadius="10" Background="#FEF2F2"
                             Padding="14,8,14,8" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📅  " FontSize="12" VerticalAlignment="Center"/>
+                            <TextBlock Text="" FontSize="12" VerticalAlignment="Center"/>
                             <TextBlock x:Name="TxtCurrentDate" FontSize="12"
                                        FontWeight="SemiBold" Foreground="#991B1B"
                                        VerticalAlignment="Center"/>
@@ -373,12 +369,12 @@
                 </Grid>
             </Border>
 
-            <!-- Scrollable Content -->
+       
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
                           Padding="28,22,28,28">
                 <StackPanel>
 
-                    <!-- ROW 1 -->
+                  
                     <Grid Margin="0,0,0,12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -413,7 +409,7 @@
                                 <Border Grid.Column="1" Width="44" Height="44"
                                         CornerRadius="12" Background="#FFFFFF22"
                                         VerticalAlignment="Top">
-                                    <TextBlock Text="👥" FontSize="20"
+                                    <TextBlock Text="" FontSize="20"
                                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </Grid>
@@ -458,7 +454,7 @@
                         </Border>
                     </Grid>
 
-                    <!-- ROW 2 -->
+               
                     <Grid Margin="0,0,0,12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -515,7 +511,7 @@
                         </Border>
                     </Grid>
 
-                    <!-- ROW 3 -->
+              
                     <Grid Margin="0,0,0,24">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -565,7 +561,7 @@
                         </Border>
                     </Grid>
 
-                    <!-- SEARCH -->
+                 
                     <TextBlock Text="Search Senior Citizen" FontSize="13"
                                FontWeight="SemiBold" Foreground="#1C0A0A" Margin="0,0,0,4"/>
                     <TextBlock Text="Search by last name or OSCA I.D." FontSize="11"
@@ -597,7 +593,7 @@
                                  SelectionChanged="SearchResultList_SelectionChanged"/>
                     </Border>
 
-                    <!-- TABLE HEADER ROW -->
+             
                     <Grid Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -623,7 +619,7 @@
                                Foreground="#374151" Margin="0,0,0,8"
                                Visibility="Collapsed"/>
 
-                    <!-- TABLE -->
+              
                     <Border Background="White" BorderBrush="#93C5FD"
                             BorderThickness="1.5" CornerRadius="10">
                         <Border.Effect>
