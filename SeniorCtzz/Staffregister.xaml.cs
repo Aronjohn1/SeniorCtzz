@@ -74,9 +74,7 @@ namespace SeniorCtzz
                 CmbBarangay.Items.Add(b);
         }
 
-        // ═══════════════════════════════════════════
-        // LOAD ALL RECORDS
-        // ═══════════════════════════════════════════
+ 
         private void LoadAllRecords()
         {
             try
@@ -87,12 +85,11 @@ namespace SeniorCtzz
                 {
                     foreach (var s in seniors)
                     {
-                        // pension_type column  → SSS / GSIS  (s.PensionType from DB)
-                        // assistance_source column → LGU / DSWD / WAITLIST  (built from flags)
+                   
                         string pensionType = s.PensionType ?? "";
                         string assistSource = BuildAssistanceDisplay(s.Lgu, s.Dswd, s.Waitlist);
 
-                        // Fallback: if pension_type still contains mixed data, split it
+                    
                         if (string.IsNullOrEmpty(assistSource) && !string.IsNullOrEmpty(pensionType))
                         {
                             SplitPensionString(pensionType, out pensionType, out assistSource);
@@ -112,8 +109,8 @@ namespace SeniorCtzz
                             DateIssued = s.DateIssued ?? "",
                             Barangay = s.Barangay ?? "",
                             BloodType = s.BloodType ?? "",
-                            PensionType = pensionType,   // SSS / GSIS only
-                            AssistanceSource = assistSource,  // LGU / DSWD / WAITLIST only
+                            PensionType = pensionType,  
+                            AssistanceSource = assistSource,  
                             RegStatus = "OSCA-Members"
                         });
                     }
@@ -127,9 +124,7 @@ namespace SeniorCtzz
             }
         }
 
-        /// <summary>
-        /// Builds the assistance source display string from individual ✔ flags.
-        /// </summary>
+    
         private string BuildAssistanceDisplay(string lgu, string dswd, string waitlist)
         {
             var pts = new List<string>();
@@ -139,11 +134,7 @@ namespace SeniorCtzz
             return string.Join(", ", pts);
         }
 
-        /// <summary>
-        /// Splits a combined pension string (e.g. "SSS,LGU,DSWD") into
-        /// Pension Type (SSS/GSIS) and Assistance Source (LGU/DSWD/WAITLIST).
-        /// Used as a fallback for old data that was saved combined.
-        /// </summary>
+    
         private static void SplitPensionString(string combined,
             out string pensionType, out string assistanceSource)
         {
@@ -198,9 +189,7 @@ namespace SeniorCtzz
             else HideError();
         }
 
-        // ═══════════════════════════════════════════
-        // VALIDATION
-        // ═══════════════════════════════════════════
+   
         private bool ValidateForm()
         {
             if (string.IsNullOrWhiteSpace(TxtLastName.Text))
@@ -238,11 +227,9 @@ namespace SeniorCtzz
             return true;
         }
 
-        // ═══════════════════════════════════════════
-        // BUILD PENSION / ASSISTANCE STRINGS
-        // ═══════════════════════════════════════════
+     
 
-        /// <summary>Returns SSS and/or GSIS — saved to pension_type column.</summary>
+
         private string GetPensionType()
         {
             var t = new List<string>();
@@ -251,7 +238,7 @@ namespace SeniorCtzz
             return string.Join(",", t);
         }
 
-        /// <summary>Returns LGU, DSWD, and/or WAITLIST — saved to assistance_source column.</summary>
+     
         private string GetAssistanceSource()
         {
             var t = new List<string>();
@@ -266,9 +253,7 @@ namespace SeniorCtzz
         private string GetResidency(string b) =>
             _barangayClassification.ContainsKey(b) ? _barangayClassification[b] : "";
 
-        // ═══════════════════════════════════════════
-        // REVIEW & CONFIRM
-        // ═══════════════════════════════════════════
+
         private void BtnReviewConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateForm()) return;
@@ -279,7 +264,7 @@ namespace SeniorCtzz
             string sfx = (CmbSuffix.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
             string sex = (CmbSex.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
 
-            // Birth Date - required, validated already
+        
             DateTime bdt = DpBirthDate.SelectedDate ?? DateTime.Today;
             string bd = bdt.ToString("MM-dd-yy");
 
@@ -287,7 +272,7 @@ namespace SeniorCtzz
             string status = (CmbStatus.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
             string osca = TxtOscaId.Text.Trim();
 
-            // Date Issued - user selected or today (registration date)
+          
             DateTime dit = DpDateIssued.SelectedDate ?? DateTime.Today;
             string di = dit.ToString("MM-dd-yy");
 
@@ -322,9 +307,7 @@ namespace SeniorCtzz
                 }
             }
         }
-        // ═══════════════════════════════════════════
-        // IMPORT CSV
-        // ═══════════════════════════════════════════
+  
         private void BtnImport_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog
@@ -370,7 +353,7 @@ namespace SeniorCtzz
                     if (string.IsNullOrEmpty(brgy)) brgy = GetSelectedBarangay();
                     string bt = GetValue(map, vals, "bloodtype");
 
-                    // ── Read pension_type column (SSS / GSIS) ──────────────
+              
                     string rawPension = GetValue(map, vals, "pensiontype", "pension_type");
                     if (string.IsNullOrWhiteSpace(rawPension))
                     {
@@ -386,16 +369,16 @@ namespace SeniorCtzz
                                 { rawPension = vals[kvp.Value]; break; }
                     }
 
-                    // ── Read assistance_source column (LGU / DSWD / WAITLIST) ──
+                   
                     string rawAssist = GetValue(map, vals, "assistancesource", "assistance_source");
 
-                    // ── Sanitize each into its own column ──────────────────
+                
                     string ptClean = SanitizePart(rawPension, new[] { "SSS", "GSIS" });
                     string asClean = SanitizePart(
                         string.IsNullOrEmpty(rawAssist) ? rawPension : rawAssist,
                         new[] { "LGU", "DSWD", "WAITLIST" });
 
-                    // Fallback: if both are empty, try full sanitize on rawPension
+                
                     if (string.IsNullOrEmpty(ptClean) && string.IsNullOrEmpty(asClean))
                     {
                         ptClean = SanitizePart(rawPension, new[] { "SSS", "GSIS" });
@@ -407,13 +390,13 @@ namespace SeniorCtzz
                     int.TryParse(ageStr, out int age);
                     string res = GetResidency(brgy);
 
-                    // Save with separate pension_type and assistance_source
+    
                     if (SeniorDB.Save(ln, fn, mn, sfx, sex, bdt, age, stat,
                                       osca, dit, brgy,
-                                      ptClean,           // → pension_type column
+                                      ptClean,          
                                       bt, res,
                                       AppSession.UserId,
-                                      asClean))          // → assistance_source column
+                                      asClean))         
                         success++;
                     else
                         failed++;
@@ -431,10 +414,7 @@ namespace SeniorCtzz
             }
         }
 
-        /// <summary>
-        /// Extracts only tokens that belong to the allowed set from the raw string.
-        /// e.g. SanitizePart("SSS,LGU", new[]{"SSS","GSIS"}) → "SSS"
-        /// </summary>
+  
         private string SanitizePart(string input, string[] allowedTokens)
         {
             if (string.IsNullOrWhiteSpace(input)) return "";
@@ -448,7 +428,7 @@ namespace SeniorCtzz
                 if (allowedTokens.Contains(clean) && !detected.Contains(clean))
                     detected.Add(clean);
             }
-            // Substring fallback
+   
             if (detected.Count == 0)
                 foreach (var token in allowedTokens)
                     if (upper.Contains(token) && !detected.Contains(token))
@@ -494,9 +474,7 @@ namespace SeniorCtzz
             return r.ToArray();
         }
 
-        // ═══════════════════════════════════════════
-        // CLEAR FORM
-        // ═══════════════════════════════════════════
+     
         private void ClearForm()
         {
             TxtLastName.Text = "";
@@ -504,11 +482,11 @@ namespace SeniorCtzz
             TxtMiddleName.Text = "";
             CmbSuffix.SelectedIndex = 0;
             CmbSex.SelectedIndex = 0;
-            DpBirthDate.SelectedDate = null;        // Birth Date - user must select
+            DpBirthDate.SelectedDate = null;    
             TxtAge.Text = "";
             CmbStatus.SelectedIndex = 0;
             TxtOscaId.Text = "";
-            DpDateIssued.SelectedDate = DateTime.Today;  // Date Issued - defaults to today
+            DpDateIssued.SelectedDate = DateTime.Today; 
             CmbBarangay.SelectedIndex = -1;
             CmbBloodType.SelectedIndex = 0;
             TxtResidency.Text = "";
@@ -547,9 +525,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // NAVIGATION
-        // ═══════════════════════════════════════════
+   
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         { new Staffdashboard().Show(); this.Close(); }
         private void BtnRegister_Click(object sender, RoutedEventArgs e) { }
@@ -574,9 +550,7 @@ namespace SeniorCtzz
         }
     }
 
-    // ═══════════════════════════════════════════
-    // DATA MODEL
-    // ═══════════════════════════════════════════
+
     public class RecordItem
     {
         public string LastName { get; set; } = "";
@@ -591,8 +565,8 @@ namespace SeniorCtzz
         public string DateIssued { get; set; } = "";
         public string Barangay { get; set; } = "";
         public string BloodType { get; set; } = "";
-        public string PensionType { get; set; } = "";  // SSS / GSIS
-        public string AssistanceSource { get; set; } = "";  // LGU / DSWD / WAITLIST
+        public string PensionType { get; set; } = "";  
+        public string AssistanceSource { get; set; } = "";  
         public string RegStatus { get; set; } = "OSCA Members";
     }
 }
