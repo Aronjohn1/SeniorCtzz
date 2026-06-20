@@ -9,7 +9,7 @@
 
     <Window.Resources>
 
-        <!-- Sidebar Styles - RED -->
+     
         <Style x:Key="SideNavStyle" TargetType="Button">
             <Setter Property="Height" Value="42"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -73,7 +73,7 @@
             </Setter>
         </Style>
 
-        <!-- Main Tab Styles -->
+
         <Style x:Key="MainTabStyle" TargetType="Button">
             <Setter Property="Height" Value="38"/>
             <Setter Property="Padding" Value="20,0"/>
@@ -121,7 +121,7 @@
             <Setter Property="BorderBrush" Value="#111827"/>
         </Style>
 
-        <!-- ComboBox Style -->
+
         <Style x:Key="ComboStyle" TargetType="ComboBox">
             <Setter Property="Height" Value="34"/>
             <Setter Property="FontSize" Value="12"/>
@@ -163,7 +163,7 @@
             </Setter>
         </Style>
 
-        <!-- Grid Styles -->
+   
         <Style x:Key="GridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#F1F5F9"/>
             <Setter Property="Foreground" Value="#374151"/>
@@ -193,7 +193,7 @@
             <Setter Property="ColumnHeaderStyle" Value="{StaticResource GridHeaderStyle}"/>
         </Style>
 
-        <!-- Stat Card Style -->
+      
         <Style x:Key="StatCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="12"/>
@@ -211,7 +211,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- RED SIDEBAR -->
+    
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -237,10 +237,10 @@
                     <Border Background="White" CornerRadius="10" Padding="10,3" HorizontalAlignment="Center" Margin="0,4,0,20">
                         <TextBlock x:Name="txtUserRole" Text="Section Head" FontSize="10" Foreground="#B71C1C" HorizontalAlignment="Center"/>
                     </Border>
-                    <Button Content="⊞  DASHBOARD"   Style="{StaticResource SideNavStyle}" Click="BtnDashboard_Click"/>
-                    <Button Content="👥  Staff Accounts" Style="{StaticResource SideNavStyle}" Click="BtnManageStaff_Click"/>
-                    <Button Content="📋  Pension List"  Style="{StaticResource SideNavStyle}" Click="BtnPensionList_Click"/>
-                    <Button Content="📊  Reports"       Style="{StaticResource SideNavActiveStyle}"/>
+                    <Button Content=" DASHBOARD"   Style="{StaticResource SideNavStyle}" Click="BtnDashboard_Click"/>
+                    <Button Content="  Staff Accounts" Style="{StaticResource SideNavStyle}" Click="BtnManageStaff_Click"/>
+                    <Button Content="  Pension List"  Style="{StaticResource SideNavStyle}" Click="BtnPensionList_Click"/>
+                    <Button Content="  Reports"       Style="{StaticResource SideNavActiveStyle}"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Margin="16,0,16,20">
                     <Button Content="Logout" Style="{StaticResource LogoutButtonStyle}" Click="BtnLogout_Click"/>
@@ -249,7 +249,7 @@
             </DockPanel>
         </Border>
 
-        <!-- MAIN CONTENT -->
+
         <Grid Grid.Column="1" Background="#F5F5F5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -258,7 +258,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Header -->
+        
             <Border Grid.Row="0" Background="White" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1" Padding="28,18,28,18">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -275,14 +275,14 @@
                 </Grid>
             </Border>
 
-            <!-- Main Tabs -->
+      
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
                 <Button x:Name="btnBarangayList" Content="BARANGAY LIST" Style="{StaticResource MainTabActiveStyle}" Click="BtnBarangayList_Click"/>
                 <Button x:Name="btnOverAllSC"    Content="OVER-ALL SC"   Style="{StaticResource MainTabStyle}"       Click="BtnOverAllSC_Click"/>
                 <Button x:Name="btnPension"      Content="PENSION"       Style="{StaticResource MainTabStyle}"       Click="BtnPension_Click"/>
             </StackPanel>
 
-            <!-- Pension Sub Tabs (now includes ALL button) -->
+         
             <Border x:Name="pnlPensionSubTabs" Grid.Row="2" Margin="28,10,28,0" Visibility="Collapsed"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="10" Padding="10,8">
                 <StackPanel Orientation="Horizontal">
@@ -294,11 +294,11 @@
                 </StackPanel>
             </Border>
 
-            <!-- Content Area -->
+ 
             <ScrollViewer Grid.Row="3" Margin="28,14,28,14" VerticalScrollBarVisibility="Auto">
                 <Grid>
 
-                    <!-- ═══════════════ BARANGAY LIST ═══════════════ -->
+            
                     <StackPanel x:Name="pnlBarangayList" Visibility="Visible">
                         <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="10" Padding="14,12" Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -337,7 +337,7 @@
                         </Border>
                     </StackPanel>
 
-                    <!-- ═══════════════ OVER-ALL SC ═══════════════ -->
+      
                     <StackPanel x:Name="pnlOverAllSC" Visibility="Collapsed">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                             <Grid>
@@ -348,7 +348,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <!-- Header banner -->
+                          
                                 <Border Grid.Row="0" CornerRadius="0" Margin="0,0,0,10" ClipToBounds="True">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -382,14 +382,14 @@
                                     </Grid>
                                 </Border>
 
-                                <!-- Main report card -->
+                          
                                 <Border Grid.Row="1" Background="White" BorderBrush="#374151" BorderThickness="2" CornerRadius="4" Margin="0,0,0,10">
                                     <StackPanel>
                                         <Border Background="White" Padding="0,14" BorderBrush="#374151" BorderThickness="0,0,0,2">
                                             <TextBlock x:Name="txtOverAllTitle" FontSize="12" FontWeight="Bold" Foreground="#111827" HorizontalAlignment="Center"/>
                                         </Border>
 
-                                        <!-- Category headers -->
+                                  
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="40"/>
@@ -427,7 +427,7 @@
                                             </Border>
                                         </Grid>
 
-                                        <!-- MALE/FEMALE sub-headers -->
+                              
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="40"/>
@@ -485,7 +485,7 @@
                                             </Border>
                                         </Grid>
 
-                                        <!-- Data rows -->
+                                 
                                         <ItemsControl x:Name="icOverAllSC">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
@@ -553,7 +553,7 @@
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
 
-                                        <!-- Totals row -->
+                            
                                         <Grid x:Name="gridOverAllTotals" Background="#F3F4F6">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="40"/>
@@ -611,7 +611,7 @@
                                             </Border>
                                         </Grid>
 
-                                        <!-- Grand total color bars -->
+                                  
                                         <Grid Height="34" Margin="140,8,0,8">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -643,7 +643,7 @@
                                     </StackPanel>
                                 </Border>
 
-                                <!-- Prepared by / Noted by -->
+                   
                                 <Grid Grid.Row="2" Margin="0,10,0,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -663,7 +663,7 @@
                                     </StackPanel>
                                 </Grid>
 
-                                <!-- GOLD footer -->
+                    
                                 <Border Grid.Row="3" CornerRadius="8" ClipToBounds="True" Margin="0,0,0,14">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -715,10 +715,10 @@
                         </ScrollViewer>
                     </StackPanel>
 
-                    <!-- ═══════════════ PENSION ═══════════════ -->
+               
                     <StackPanel x:Name="pnlPension" Visibility="Collapsed">
 
-                        <!-- AS OF Filter -->
+               
                         <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
                                 CornerRadius="10" Padding="14,10,14,10" Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -730,7 +730,7 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Cards Grid - 2x2 (ALL card removed) -->
+                  
                         <Grid x:Name="gridPensionCards" Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -743,7 +743,7 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Quarterly Card (Row 0, Col 0) -->
+                     
                             <Border x:Name="cardQuarterly" Grid.Row="0" Grid.Column="0"
                                     Style="{StaticResource StatCardStyle}" Cursor="Hand"
                                     MouseLeftButtonDown="CardQuarterly_Click">
@@ -766,7 +766,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- AICS Card (Row 0, Col 2) -->
+                  
                             <Border x:Name="cardAICS" Grid.Row="0" Grid.Column="2"
                                     Style="{StaticResource StatCardStyle}" Cursor="Hand"
                                     MouseLeftButtonDown="CardAICS_Click">
@@ -789,7 +789,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- Bereaved Card (Row 2, Col 0) -->
+                     
                             <Border x:Name="cardBereaved" Grid.Row="2" Grid.Column="0"
                                     Style="{StaticResource StatCardStyle}" Cursor="Hand"
                                     MouseLeftButtonDown="CardBereaved_Click">
@@ -812,7 +812,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- APR Card (Row 2, Col 2) -->
+                       
                             <Border x:Name="cardAPR" Grid.Row="2" Grid.Column="2"
                                     Style="{StaticResource StatCardStyle}" Cursor="Hand"
                                     MouseLeftButtonDown="CardAPR_Click">
