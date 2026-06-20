@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!-- Input TextBox Style -->
+    
         <Style x:Key="InputStyle" TargetType="TextBox">
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="13"/>
@@ -43,7 +43,7 @@
             </Setter>
         </Style>
 
-        <!-- PasswordBox Style -->
+ 
         <Style x:Key="PasswordStyle" TargetType="PasswordBox">
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="13"/>
@@ -75,7 +75,7 @@
             </Setter>
         </Style>
 
-        <!-- Sign In Button Style -->
+     
         <Style x:Key="SignInButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#2563EB"/>
             <Setter Property="Foreground" Value="White"/>
@@ -104,7 +104,7 @@
             </Setter>
         </Style>
 
-        <!-- Forgot Password Link Style -->
+  
         <Style x:Key="LinkButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -127,7 +127,7 @@
             </Setter>
         </Style>
 
-        <!-- Icon Border Style -->
+  
         <Style x:Key="IconBorderStyle" TargetType="Border">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -138,7 +138,7 @@
         </Style>
     </Window.Resources>
 
-    <!-- Main Background -->
+
     <Grid Background="#F0F2F5">
 
         <!-- Centered Card -->
@@ -156,7 +156,7 @@
 
             <StackPanel>
 
-                <!-- Dark Header Bar -->
+           
                 <Border Background="#1A2744"
                         Height="72"
                         CornerRadius="16,16,0,0">
@@ -175,10 +175,10 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Form Area -->
+          
                 <StackPanel Margin="40,32,40,36">
 
-                    <!-- Title -->
+              
                     <TextBlock Text="Welcome Back"
                                FontSize="22"
                                FontWeight="Bold"
@@ -205,7 +205,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Icon Border -->
+                  
                         <Border Grid.Column="0"
                                 Style="{StaticResource IconBorderStyle}">
                             <TextBlock Text="✉"
@@ -215,7 +215,7 @@
                                        VerticalAlignment="Center"/>
                         </Border>
 
-                        <!-- ID TextBox -->
+              
                         <TextBox x:Name="TxtID"
                                  Grid.Column="1"
                                  Style="{StaticResource InputStyle}"
@@ -261,7 +261,7 @@
                         </TextBox>
                     </Grid>
 
-                    <!-- Password Field -->
+          
                     <TextBlock Text="Password"
                                FontSize="12"
                                FontWeight="SemiBold"
@@ -274,7 +274,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Icon Border -->
+                 
                         <Border Grid.Column="0"
                                 Style="{StaticResource IconBorderStyle}">
                             <TextBlock Text="🔒"
@@ -283,7 +283,7 @@
                                        VerticalAlignment="Center"/>
                         </Border>
 
-                        <!-- Password Box -->
+                    
                         <PasswordBox x:Name="TxtPassword"
                                      Grid.Column="1"
                                      Style="{StaticResource PasswordStyle}" Height="NaN">
@@ -317,14 +317,14 @@
                         </PasswordBox>
                     </Grid>
 
-                    <!-- Forgot Password -->
+             
                     <Button Content="Forgot Password?"
                             Style="{StaticResource LinkButtonStyle}"
                             HorizontalAlignment="Right"
                             Margin="0,0,0,24"
                             Click="ForgotPassword_Click"/>
 
-                    <!-- Error Message -->
+               
                     <TextBlock x:Name="TxtError"
                                Foreground="#DC2626"
                                FontSize="12"
@@ -334,7 +334,7 @@
                                TextWrapping="Wrap"
                                Text=""/>
 
-                    <!-- Sign In Button -->
+                
                     <Button Content="Sign in"
                             Style="{StaticResource SignInButtonStyle}"
                             Click="BtnSignIn_Click"/>
