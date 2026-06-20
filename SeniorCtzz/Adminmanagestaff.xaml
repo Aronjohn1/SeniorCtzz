@@ -9,7 +9,7 @@
 
     <Window.Resources>
 
-        <!-- Nav Button Style - RED SIDEBAR -->
+    
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="42"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -39,7 +39,7 @@
             </Setter>
         </Style>
 
-        <!-- Active Nav Button - RED SIDEBAR -->
+
         <Style x:Key="NavButtonActiveStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#B71C1C"/>
@@ -51,7 +51,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Logout Button -->
+ 
         <Style x:Key="LogoutButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#FFEBEE"/>
@@ -80,7 +80,7 @@
             </Setter>
         </Style>
 
-        <!-- Primary Button - RED -->
+    
         <Style x:Key="PrimaryBtnStyle" TargetType="Button">
             <Setter Property="Background" Value="#C62828"/>
             <Setter Property="Foreground" Value="White"/>
@@ -106,7 +106,7 @@
             </Setter>
         </Style>
 
-        <!-- Secondary Button -->
+   
         <Style x:Key="SecondaryBtnStyle" TargetType="Button">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#374151"/>
@@ -135,7 +135,7 @@
             </Setter>
         </Style>
 
-        <!-- Input Field Style - WHITE -->
+    
         <Style x:Key="InputFieldStyle" TargetType="TextBox">
             <Setter Property="BorderBrush" Value="#D1D5DB"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -162,7 +162,7 @@
             </Setter>
         </Style>
 
-        <!-- FIXED: DataGrid Column Header Style -->
+  
         <Style x:Key="StaffColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#F1F5F9"/>
             <Setter Property="Foreground" Value="#374151"/>
@@ -174,7 +174,7 @@
             <Setter Property="Height" Value="40"/>
         </Style>
 
-        <!-- FIXED: DataGrid Cell Style - WITH BORDERS -->
+     
         <Style x:Key="StaffCellStyle" TargetType="DataGridCell">
             <Setter Property="BorderThickness" Value="0,0,1,1"/>
             <Setter Property="BorderBrush" Value="#E5E7EB"/>
@@ -198,7 +198,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- FIXED: DataGrid Row Style -->
+  
         <Style TargetType="DataGridRow">
             <Setter Property="BorderBrush" Value="#E5E7EB"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -220,7 +220,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ═══════ RED SIDEBAR ═══════ -->
+ 
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -255,10 +255,10 @@
 
                     <Button Content="⊞  DASHBOARD" Style="{StaticResource NavButtonStyle}"
                             Click="BtnDashboard_Click"/>
-                    <Button Content="👥  Staff Accounts" Style="{StaticResource NavButtonActiveStyle}"/>
-                    <Button Content="📋  Pension List" Style="{StaticResource NavButtonStyle}"
+                    <Button Content="  Staff Accounts" Style="{StaticResource NavButtonActiveStyle}"/>
+                    <Button Content="  Pension List" Style="{StaticResource NavButtonStyle}"
                             Click="BtnPensionList_Click"/>
-                    <Button Content="📊  Reports" Style="{StaticResource NavButtonStyle}"
+                    <Button Content="  Reports" Style="{StaticResource NavButtonStyle}"
                             Click="BtnReports_Click" Width="172"/>
                 </StackPanel>
 
@@ -270,14 +270,14 @@
             </DockPanel>
         </Border>
 
-        <!-- ═══════ MAIN CONTENT - WHITE/BLACK ═══════ -->
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Top Header Bar -->
+
             <Border Grid.Row="0" Background="White" Padding="28,14,28,14">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="8" ShadowDepth="1" Opacity="0.06" Color="Black"/>
@@ -290,7 +290,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Scrollable Body -->
+     
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Background="#F5F5F5">
                 <Grid Margin="28,20,28,20">
                     <Grid.RowDefinitions>
@@ -299,7 +299,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- ── Form Card ── -->
+      
                     <Border Grid.Row="0" Background="White" CornerRadius="12"
                             Margin="0,0,0,20" Padding="24,20"
                             BorderBrush="#E5E7EB" BorderThickness="1">
@@ -368,7 +368,7 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Table Header -->
+       
                     <Grid Grid.Row="1" Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -382,7 +382,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!-- ── Staff Table WITH BORDERS ── -->
+         
                     <Border Grid.Row="2" Background="White" CornerRadius="12"
                             ClipToBounds="True" BorderBrush="#E5E7EB" BorderThickness="1">
                         <Border.Effect>
