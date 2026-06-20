@@ -10,7 +10,7 @@
         ResizeMode="CanResize"
         Background="#F9FAFB">
     <Window.Resources>
-        <!-- Nav Button - BLUE SIDEBAR -->
+
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -72,7 +72,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- Tab Button - WHITE/BLACK -->
+       
         <Style x:Key="TabButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="36"/>
             <Setter Property="MinWidth" Value="100"/>
@@ -250,7 +250,7 @@
             <ColumnDefinition Width="210"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!-- BLUE SIDEBAR -->
+
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -297,12 +297,12 @@
             </Grid>
         </Border>
 
-        <!-- MAIN CONTENT -->
+
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Background="#F9FAFB">
             <StackPanel Margin="40,28,40,28">
                 <TextBlock Text="Release" FontSize="24" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,24"/>
 
-                <!-- TAB BUTTONS -->
+         
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
                     <Button x:Name="BtnTabAICS"      Content="AICS"      Style="{StaticResource TabButtonActiveStyle}" Click="BtnTabAICS_Click"/>
                     <Button x:Name="BtnTabAPR"       Content="APR"       Style="{StaticResource TabButtonStyle}"       Click="BtnTabAPR_Click"/>
@@ -310,12 +310,12 @@
                     <Button x:Name="BtnTabQuarterly" Content="Quarterly" Style="{StaticResource TabButtonStyle}"       Click="BtnTabQuarterly_Click"/>
                 </StackPanel>
 
-                <!-- ===== AICS / APR PANEL ===== -->
+            
                 <StackPanel x:Name="PanelAICS_APR" Visibility="Visible">
                     <TextBlock x:Name="TxtPanelLabel" Text="AICS — Assistance to Indigent Senior Citizens"
                                FontSize="15" FontWeight="SemiBold" Foreground="#111827" Margin="0,0,0,14"/>
 
-                    <!-- Search -->
+                  
                     <TextBlock Text="Search by Name" Style="{StaticResource FieldLabelStyle}" Margin="0,0,0,6"/>
                     <Grid Width="320" HorizontalAlignment="Left" Margin="0,0,0,4">
                         <Grid.ColumnDefinitions>
@@ -348,7 +348,7 @@
                                  FontSize="12" MaxHeight="100" SelectionChanged="SearchResultAAB_SelectionChanged"/>
                     </Border>
 
-                    <!-- AICS-only fields: Hospital Bill / 30% / Total -->
+                
                     <Grid Margin="0,0,0,16" x:Name="GridAICSFields">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160"/>
@@ -399,7 +399,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!-- APR-only fields: Fixed Amount only (no hospital bill) -->
+         
                     <Grid Margin="0,0,0,16" x:Name="GridAPRField" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160"/>
@@ -424,7 +424,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!-- Shared: Date / Full Name / Barangay -->
+        
                     <Grid Margin="0,0,0,16">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160"/>
@@ -493,7 +493,7 @@
                         <Button Content="Save" Style="{StaticResource ActionButtonStyle}" Margin="0,0,10,0" Click="BtnSaveAAB_Click"/>
                     </StackPanel>
 
-                    <!-- Error -->
+               
                     <Border Background="#FEF2F2" BorderBrush="#FECACA" BorderThickness="1"
                             CornerRadius="8" Padding="12,10,12,10" Margin="0,12,0,0" Visibility="Collapsed">
                         <Border.Style>
@@ -515,7 +515,7 @@
                     </Border>
                 </StackPanel>
 
-                <!-- ===== BEREAVED PANEL ===== -->
+        
                 <StackPanel x:Name="PanelBereaved" Visibility="Collapsed">
                     <TextBlock Text="BEREAVED" FontSize="18" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,16"/>
                     <TextBlock Text="Search by Name" Style="{StaticResource FieldLabelStyle}" Margin="0,0,0,6"/>
@@ -680,7 +680,7 @@
                     </Border>
                 </StackPanel>
 
-                <!-- ===== QUARTERLY PANEL ===== -->
+   
                 <StackPanel x:Name="PanelQuarterly" Visibility="Collapsed">
                     <TextBlock Text="Quarterly Pension Release" FontSize="18" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,16"/>
                     <Grid Margin="0,0,0,12">
