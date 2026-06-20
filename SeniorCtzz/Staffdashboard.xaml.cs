@@ -35,7 +35,7 @@ namespace SeniorCtzz
             TxtTotalQuarterly.Text = PensionDB.GetCount("QUARTERLY").ToString();
         }
 
-        // LOAD RECENT WITH PENSION COUNTS PER SENIOR
+     
         private void LoadRecentTransactions()
         {
             var data = PensionDB.GetDashboardRecent();
@@ -43,16 +43,16 @@ namespace SeniorCtzz
             DgRecent.Items.Refresh();
         }
 
-        // SEARCH — Name only, no barangay in dropdown
+   
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string query = TxtSearch.Text.Trim();
 
-            // FIXED: When search box is cleared, show all data again
+         
             if (string.IsNullOrEmpty(query))
             {
                 SearchDropdown.Visibility = Visibility.Collapsed;
-                LoadRecentTransactions(); // Reload all data
+                LoadRecentTransactions(); 
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace SeniorCtzz
             TxtSearch.Text = selectedName;
             SearchDropdown.Visibility = Visibility.Collapsed;
 
-            // Filter recent table by selected senior
+      
             var senior = _seniorSearchCache.FirstOrDefault(s => s.FullName == selectedName);
             if (senior != null)
             {
