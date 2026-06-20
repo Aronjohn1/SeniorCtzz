@@ -10,7 +10,7 @@
         Background="#F1F5F9">
 
     <Window.Resources>
-        <!-- Nav Button - BLUE SIDEBAR -->
+
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -165,7 +165,7 @@
             </Setter>
         </Style>
 
-        <!-- ── Pension-type checkbox — BLUE tick ── -->
+   
         <Style x:Key="PensionCheckBoxStyle" TargetType="CheckBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,20,0"/>
@@ -199,7 +199,7 @@
             </Setter>
         </Style>
 
-        <!-- ── Assistance-source checkbox — GREEN tick ── -->
+    
         <Style x:Key="AssistCheckBoxStyle" TargetType="CheckBox"
                BasedOn="{StaticResource PensionCheckBoxStyle}">
             <Setter Property="Template">
@@ -358,7 +358,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ══════════ BLUE SIDEBAR ══════════ -->
+
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -411,13 +411,11 @@
             </Grid>
         </Border>
 
-        <!-- ══════════ MAIN CONTENT ══════════ -->
+  
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Background="#F1F5F9">
             <StackPanel Margin="32,24,32,24">
 
-                <!-- ════════════════════════
-                     REGISTRATION FORM
-                ════════════════════════ -->
+         
                 <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
                         CornerRadius="12" Padding="24,20" Margin="0,0,0,16">
                     <StackPanel>
@@ -460,7 +458,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- Sex / Birthdate / Age / Status row -->
+                 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80"/>
@@ -498,7 +496,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- OSCA / Date Issued / Barangay row -->
+                  
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="140"/>
@@ -523,7 +521,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- Blood Type / Residency row -->
+                    
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="140"/>
@@ -551,7 +549,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- ══ PENSION TYPE + ASSISTANCE SOURCE (side by side) ══ -->
+               
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -576,7 +574,7 @@
                                 </Border>
                             </StackPanel>
 
-                            <!-- ASSISTANCE SOURCE — LGU / DSWD / WAITLIST (green tick) -->
+                        
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="ASSISTANCE SOURCE" Style="{StaticResource FieldLabelStyle}"
                                            Margin="0,0,0,6"/>
@@ -597,7 +595,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- Error banner -->
+                  
                         <Border x:Name="ErrorBorder" Background="#FEF2F2" BorderBrush="#FECACA"
                                 BorderThickness="1" CornerRadius="8" Padding="10,8"
                                 Margin="0,0,0,10" Visibility="Collapsed">
@@ -609,7 +607,7 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Submit button -->
+          
                         <Button x:Name="BtnReviewConfirm" Style="{StaticResource ActionButtonPrimaryStyle}"
                                 Width="220" Click="BtnReviewConfirm_Click">
                             <StackPanel Orientation="Horizontal">
@@ -620,9 +618,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- ════════════════════════
-                     REGISTERED RECORDS TABLE
-                ════════════════════════ -->
+       
                 <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
                         CornerRadius="12" Padding="24,20">
                     <StackPanel>
