@@ -11,7 +11,7 @@
         Background="#F9FAFB">
 
     <Window.Resources>
-        <!-- Nav Button - BLUE SIDEBAR -->
+
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -76,7 +76,7 @@
             </Setter>
         </Style>
 
-        <!-- Tab Button - WHITE/BLACK -->
+
         <Style x:Key="TabButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="36"/>
             <Setter Property="MinWidth" Value="95"/>
@@ -192,7 +192,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- BLUE SIDEBAR -->
+  
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -239,7 +239,7 @@
             </Grid>
         </Border>
 
-        <!-- MAIN CONTENT -->
+    
         <Grid Grid.Column="1" Background="#F9FAFB">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -270,7 +270,7 @@
                 </Border>
             </StackPanel>
 
-            <!-- BARANGAY LIST -->
+          
             <Border x:Name="PanelBarangayList" Grid.Row="1" Margin="28,0,28,20"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Visibility="Visible">
                 <DataGrid x:Name="DgBarangayList" Style="{StaticResource GridStyle}" AutoGenerateColumns="False" IsReadOnly="True">
@@ -296,7 +296,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- QUARTERLY -->
+    
             <Border x:Name="PanelQuarterlyTab" Grid.Row="1" Margin="28,0,28,20"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Visibility="Collapsed">
                 <DataGrid x:Name="DgQuarterlyList" Style="{StaticResource GridStyle}"
@@ -326,7 +326,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- AICS -->
+    
             <Border x:Name="PanelAICSTab" Grid.Row="1" Margin="28,0,28,20"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Visibility="Collapsed">
                 <DataGrid x:Name="DgAICSList" Style="{StaticResource GridStyle}">
@@ -341,7 +341,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- APR -->
+  
             <Border x:Name="PanelAPRTab" Grid.Row="1" Margin="28,0,28,20"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Visibility="Collapsed">
                 <DataGrid x:Name="DgAPRList" Style="{StaticResource GridStyle}">
@@ -356,7 +356,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- BEREAVED -->
+  
             <Border x:Name="PanelBereavedTab" Grid.Row="1" Margin="28,0,28,20"
                     Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Visibility="Collapsed">
                 <DataGrid x:Name="DgBereavedTab" Style="{StaticResource GridStyle}">
