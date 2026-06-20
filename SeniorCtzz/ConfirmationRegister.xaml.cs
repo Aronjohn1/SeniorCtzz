@@ -18,22 +18,18 @@ namespace SeniorCtzz
         private readonly string _oscaId;
         private readonly string _dateIssued;
         private readonly string _barangay;
-        private readonly string _pensionType;      // SSS / GSIS
-        private readonly string _assistanceSource; // LGU / DSWD / WAITLIST
+        private readonly string _pensionType;     
+        private readonly string _assistanceSource; 
         private readonly string _bloodType;
         private readonly string _residency;
 
-        /// <summary>
-        /// Opens the confirmation dialog.
-        /// pensionType      = SSS / GSIS  (from pension_type column)
-        /// assistanceSource = LGU / DSWD / WAITLIST  (from assistance_source column)
-        /// </summary>
+    
         public ConfirmationRegister(
             string lastName, string firstName, string middleName, string suffix,
             string sex, string birthDate, string age, string status,
             string oscaId, string dateIssued, string barangay,
-            string pensionType,      // SSS / GSIS
-            string assistanceSource, // LGU / DSWD / WAITLIST
+            string pensionType,      
+            string assistanceSource, 
             string bloodType = "",
             string residency = "")
         {
@@ -72,11 +68,10 @@ namespace SeniorCtzz
             TxtReviewDateIssued.Text = _dateIssued;
             TxtReviewBarangay.Text = _barangay;
 
-            // Pension Type: SSS / GSIS — shown in blue badge
+  
             TxtReviewPensionType.Text =
                 string.IsNullOrEmpty(_pensionType) ? "—" : _pensionType;
 
-            // Assistance Source: LGU / DSWD / WAITLIST — shown in green badge
             TxtReviewAssistanceSource.Text =
                 string.IsNullOrEmpty(_assistanceSource) ? "—" : _assistanceSource;
 
