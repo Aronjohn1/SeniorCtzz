@@ -79,7 +79,7 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Main card -->
+
         <Border Background="White" CornerRadius="20" Width="470"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Padding="28,24,28,24">
@@ -88,7 +88,7 @@
             </Border.Effect>
             <StackPanel>
 
-                <!-- Header -->
+            
                 <Grid Margin="0,0,0,4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -126,7 +126,7 @@
 
                 <Border Height="1" Background="#F3F4F6" Margin="0,12,0,14"/>
 
-                <!-- ROW 1: Names -->
+           
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -154,7 +154,7 @@
                     </Grid>
                 </Border>
 
-                <!-- ROW 2: Sex, Birth Date, Age, Status -->
+             
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -182,7 +182,7 @@
                     </Grid>
                 </Border>
 
-                <!-- ROW 3: OSCA ID, Date Issued -->
+           
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -200,7 +200,7 @@
                     </Grid>
                 </Border>
 
-                <!-- ROW 4: Pension Type + Assistance Source (SEPARATE columns) -->
+           
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -220,7 +220,7 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <!-- Assistance Source: LGU / DSWD / WAITLIST -->
+                  
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="ASSISTANCE SOURCE" Style="{StaticResource ReviewLabelStyle}"/>
                             <StackPanel Orientation="Horizontal">
@@ -234,7 +234,7 @@
                     </Grid>
                 </Border>
 
-                <!-- ROW 5: Blood Type + Residency -->
+          
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -252,7 +252,7 @@
                     </Grid>
                 </Border>
 
-                <!-- ROW 6: Barangay -->
+              
                 <Border Background="#F9FAFB" CornerRadius="10" Padding="14,11" Margin="0,0,0,14">
                     <StackPanel>
                         <TextBlock Text="BARANGAY" Style="{StaticResource ReviewLabelStyle}"/>
@@ -260,7 +260,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Warning -->
+        
                 <Border Background="#FFFBEB" BorderBrush="#FDE68A" BorderThickness="1"
                         CornerRadius="10" Padding="12,10" Margin="0,0,0,16">
                     <StackPanel Orientation="Horizontal">
@@ -274,7 +274,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Buttons -->
+             
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
