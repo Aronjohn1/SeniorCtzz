@@ -21,9 +21,7 @@ namespace SeniorCtzz
             LoadAllSeniorsSummary();
         }
 
-        // ═══════════════════════════════════════════
-        // INIT
-        // ═══════════════════════════════════════════
+
 
         private void SetUserInfo()
         {
@@ -34,17 +32,15 @@ namespace SeniorCtzz
 
         private void SetCurrentDate()
         {
-            // Shows e.g. "May 18, 2026" in the header date badge
+        
             TxtCurrentDate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
         }
 
-        // ═══════════════════════════════════════════
-        // STATS
-        // ═══════════════════════════════════════════
+   
 
         private void LoadStats()
         {
-            // ── Row 1: Key metrics ──────────────────────────────────
+
             int total = SeniorDB.GetTotalCount();
             int active = SeniorDB.GetActiveCount();
             int inactive = total - active;
@@ -53,21 +49,19 @@ namespace SeniorCtzz
             txtTotalActive.Text = active.ToString();
             txtTotalInactive.Text = inactive.ToString();
 
-            // ── Row 2: Pension breakdown ────────────────────────────
+       
             txtTotalAICS.Text = PensionDB.GetCount("AICS").ToString();
             txtTotalAPR.Text = PensionDB.GetCount("APR").ToString();
             txtTotalQuarterly.Text = PensionDB.GetCount("QUARTERLY").ToString();
             txtTotalBereaved.Text = PensionDB.GetCount("BEREAVED").ToString();
 
-            // ── Row 3: Admin-only metrics ───────────────────────────
+  
             txtTotalStaff.Text = StaffDB.GetActiveStaffCount().ToString();
             txtEntriesMonth.Text = SeniorDB.GetEntriesThisMonth().ToString();
             txtReleasesMonth.Text = PensionDB.GetReleasesThisMonth().ToString();
         }
 
-        // ═══════════════════════════════════════════
-        // TABLE
-        // ═══════════════════════════════════════════
+
 
         private void LoadAllSeniorsSummary()
         {
@@ -76,15 +70,13 @@ namespace SeniorCtzz
             UpdateRecordCount(data?.Count ?? 0);
         }
 
-        /// <summary>Updates the record-count pill beside the table title.</summary>
+
         private void UpdateRecordCount(int count)
         {
             TxtRecordCount.Text = count == 1 ? "1 record" : $"{count} records";
         }
 
-        // ═══════════════════════════════════════════
-        // SEARCH
-        // ═══════════════════════════════════════════
+
 
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -93,7 +85,7 @@ namespace SeniorCtzz
             if (string.IsNullOrEmpty(query))
             {
                 SearchDropdown.Visibility = Visibility.Collapsed;
-                LoadAllSeniorsSummary(); // reset table when cleared
+                LoadAllSeniorsSummary(); 
                 return;
             }
 
@@ -107,7 +99,7 @@ namespace SeniorCtzz
             }
             else
             {
-                // ── No match: hide dropdown AND clear the table ──
+             
                 SearchDropdown.Visibility = Visibility.Collapsed;
                 dgRecent.ItemsSource = null;
                 UpdateRecordCount(0);
@@ -128,7 +120,7 @@ namespace SeniorCtzz
 
             if (_seniorSearchCache.Any())
             {
-                // If only one result, load directly
+  
                 if (_seniorSearchCache.Count == 1)
                 {
                     var senior = _seniorSearchCache.First();
@@ -146,7 +138,7 @@ namespace SeniorCtzz
             }
             else
             {
-                // No match: clear table
+       
                 SearchDropdown.Visibility = Visibility.Collapsed;
                 dgRecent.ItemsSource = null;
                 UpdateRecordCount(0);
@@ -160,7 +152,7 @@ namespace SeniorCtzz
             string selectedEntry = SearchResultList.SelectedItem.ToString();
             SearchDropdown.Visibility = Visibility.Collapsed;
 
-            // Match by FullName since display is "FullName (OscaId)"
+         
             var senior = _seniorSearchCache.FirstOrDefault(s =>
                 selectedEntry.StartsWith(s.FullName, StringComparison.OrdinalIgnoreCase));
 
@@ -173,15 +165,13 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // EXPORT
-        // ═══════════════════════════════════════════
+
 
         private void BtnExportReport_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Get current table data (whatever is bound — filtered or all)
+             
                 var data = dgRecent.ItemsSource as System.Collections.IList;
                 if (data == null || data.Count == 0)
                 {
@@ -190,7 +180,7 @@ namespace SeniorCtzz
                     return;
                 }
 
-                // Save dialog
+  
                 var dialog = new Microsoft.Win32.SaveFileDialog
                 {
                     Title = "Export Pension Summary Report",
@@ -200,13 +190,13 @@ namespace SeniorCtzz
 
                 if (dialog.ShowDialog() != true) return;
 
-                // Build CSV
+    
                 var sb = new System.Text.StringBuilder();
                 sb.AppendLine("DATE (REG.),LAST NAME,FIRST NAME,BARANGAY,AICS,APR,QUARTERLY,BEREAVED,TOTAL");
 
                 foreach (var item in data)
                 {
-                    // Uses the same property names bound in the DataGrid
+              
                     dynamic row = item;
                     sb.AppendLine(
                         $"{row.Date},{row.LastName},{row.FirstName},{row.Barangay}," +
@@ -227,9 +217,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // NAVIGATION
-        // ═══════════════════════════════════════════
+    
 
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {
