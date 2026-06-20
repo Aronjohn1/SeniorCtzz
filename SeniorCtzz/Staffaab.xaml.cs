@@ -29,9 +29,7 @@ namespace SeniorCtzz
             TxtAvatar.Text = AppSession.GetInitials();
         }
 
-        // ═══════════════════════════════════════════
-        // TAB SWITCHING
-        // ═══════════════════════════════════════════
+   
         private void BtnTabAICS_Click(object sender, RoutedEventArgs e) => SetActiveTab("AICS");
         private void BtnTabAPR_Click(object sender, RoutedEventArgs e) => SetActiveTab("APR");
         private void BtnTabBereaved_Click(object sender, RoutedEventArgs e) => SetActiveTab("BEREAVED");
@@ -56,7 +54,7 @@ namespace SeniorCtzz
                     PanelAICS_APR.Visibility = Visibility.Visible;
                     GridAICSFields.Visibility = Visibility.Visible;
                     GridAPRField.Visibility = Visibility.Collapsed;
-                    // Update panel label for AICS
+                
                     TxtPanelLabel.Text = "AICS — Assistance to Indigent Senior Citizens";
                     ClearAABForm();
                     break;
@@ -65,7 +63,7 @@ namespace SeniorCtzz
                     PanelAICS_APR.Visibility = Visibility.Visible;
                     GridAICSFields.Visibility = Visibility.Collapsed;
                     GridAPRField.Visibility = Visibility.Visible;
-                    // Update panel label for APR
+            
                     TxtPanelLabel.Text = "APR — Assistance to Persons with Disability";
                     ClearAABForm();
                     break;
@@ -83,9 +81,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // AICS 30% CALCULATION
-        // ═══════════════════════════════════════════
+    
         private void TxtHospitalBill_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (decimal.TryParse(TxtHospitalBill.Text.Trim(), out decimal bill))
@@ -101,9 +97,6 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // SEARCH — AICS/APR
-        // ═══════════════════════════════════════════
         private void TxtSearchAAB_TextChanged(object sender, TextChangedEventArgs e)
         {
             string keyword = TxtSearchAAB.Text.Trim();
@@ -153,9 +146,7 @@ namespace SeniorCtzz
             TxtBarangayAAB.Text = senior.Barangay ?? "";
         }
 
-        // ═══════════════════════════════════════════
-        // SEARCH — BEREAVED
-        // ═══════════════════════════════════════════
+    
         private void TxtSearchBereaved_TextChanged(object sender, TextChangedEventArgs e)
         {
             string keyword = TxtSearchBereaved.Text.Trim();
@@ -203,9 +194,7 @@ namespace SeniorCtzz
             TxtBarangayBereaved.Text = senior.Barangay;
         }
 
-        // ═══════════════════════════════════════════
-        // SAVE — AICS / APR
-        // ═══════════════════════════════════════════
+  
         private void BtnSaveAAB_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_selectedSeniorIdAAB))
@@ -241,9 +230,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // SAVE — BEREAVED (Fixed 2,000)
-        // ═══════════════════════════════════════════
+    
         private void BtnSaveBereaved_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_selectedSeniorIdBereaved))
@@ -274,9 +261,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // QUARTERLY TAB
-        // ═══════════════════════════════════════════
+     
         private string[] _allBarangays = new string[]
         {
             "Agay-ayan", "Alagatan", "Anakan", "Bagubad", "Bakidbakid",
@@ -323,7 +308,7 @@ namespace SeniorCtzz
             LoadAllBarangaysForQuarterly();
         }
 
-        /// <summary>Load ALL barangays into the ComboBox (not just ones with data)</summary>
+ 
         private void LoadAllBarangaysForQuarterly()
         {
             string selected = (CmbQuarterlyBarangay.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "All Barangays";
@@ -334,7 +319,7 @@ namespace SeniorCtzz
             foreach (var brgy in _allBarangays)
                 CmbQuarterlyBarangay.Items.Add(new ComboBoxItem { Content = brgy });
 
-            // Restore selection
+          
             foreach (ComboBoxItem item in CmbQuarterlyBarangay.Items)
             {
                 if (item.Content?.ToString() == selected)
@@ -353,31 +338,23 @@ namespace SeniorCtzz
 
             foreach (var item in _allQuarterlyData)
             {
-                // ── Compute release date: registration date + 3 months ──────────────
-                // Fall back to today if the stored date cannot be parsed.
+         
                 DateTime registrationDate;
                 if (!DateTime.TryParse(item.Date, out registrationDate))
                     registrationDate = today;
 
                 DateTime releaseDate = registrationDate.AddMonths(3);
 
-                // Store the computed release date so the table column shows it.
+        
                 item.ReleaseDate = releaseDate.ToString("MM/dd/yyyy");
 
-                // ── Status logic ─────────────────────────────────────────────────────
-                //
-                //  Released : today >= releaseDate  (on or after the exact release date)
-                //  Upcoming : today is inside the calendar month that is exactly one
-                //             month before the release month.
-                //             Example: release = Aug 13  →  Upcoming during all of July.
-                //  Pending  : everything else (default)
-                //
+          
                 bool isReleased = today >= releaseDate;
 
-                // First day of the release month, first day of the month before.
+        
                 DateTime firstOfReleaseMonth = new DateTime(releaseDate.Year, releaseDate.Month, 1);
                 DateTime firstOfUpcomingMonth = firstOfReleaseMonth.AddMonths(-1);
-                DateTime lastOfUpcomingMonth = firstOfReleaseMonth.AddDays(-1); // last day of the prior month
+                DateTime lastOfUpcomingMonth = firstOfReleaseMonth.AddDays(-1); 
 
                 bool isUpcoming = !isReleased
                                   && today >= firstOfUpcomingMonth
@@ -428,7 +405,7 @@ namespace SeniorCtzz
                                         (q.OscaId?.ToLower().Contains(kw) ?? false)));
             }
 
-            // Apply the active status-filter button (Pending / Upcoming / Released)
+ 
             filtered = new ObservableCollection<QuarterlyItem>(
                 filtered.Where(q =>
                 {
@@ -436,7 +413,7 @@ namespace SeniorCtzz
                         return q.Status == "Released";
                     if (_quarterlyFilter == "Upcoming")
                         return q.Status.StartsWith("Upcoming");
-                    // Default: Pending
+        
                     return q.Status == "Pending";
                 }));
 
@@ -457,12 +434,10 @@ namespace SeniorCtzz
 
         private void BtnSearchQuarterly_Click(object sender, RoutedEventArgs e)
         {
-            // Already handled by TextChanged
+      
         }
 
-        // ═══════════════════════════════════════════
-        // CLEAR FORMS
-        // ═══════════════════════════════════════════
+   
         private void ClearAABForm()
         {
             TxtSearchAAB.Text = "";
@@ -516,9 +491,7 @@ namespace SeniorCtzz
             TxtErrorBereaved.Visibility = Visibility.Collapsed;
         }
 
-        // ═══════════════════════════════════════════
-        // NAVIGATION
-        // ═══════════════════════════════════════════
+     
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         { new Staffdashboard().Show(); this.Close(); }
 
