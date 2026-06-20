@@ -29,7 +29,7 @@ namespace SeniorCtzz
         private void LoadStaffData()
         {
             var allUsers = StaffDB.GetAll();
-            // Show only staff encoders (exclude Section Head / admin)
+
             _staffList = new ObservableCollection<StaffItem>(
                 allUsers.Where(u => u.Role != "Section Head"));
             dgStaff.ItemsSource = _staffList;
@@ -47,7 +47,7 @@ namespace SeniorCtzz
         {
             string fullName = TxtFullName.Text.Trim();
             string empId = TxtID.Text.Trim();
-            string password = TxtPassword.Text.Trim();   // FIXED
+            string password = TxtPassword.Text.Trim();   
 
             if (string.IsNullOrWhiteSpace(fullName) ||
                 string.IsNullOrWhiteSpace(empId) ||
@@ -85,7 +85,7 @@ namespace SeniorCtzz
 
             TxtFullName.Text = item.FullName ?? "";
             TxtID.Text = item.StaffId ?? "";
-            TxtPassword.Text = item.Password ?? "";   // FIXED
+            TxtPassword.Text = item.Password ?? "";   
 
             _editingEmpId = staffId;
             BtnSaveStaff.Content = "Update";
@@ -135,7 +135,7 @@ namespace SeniorCtzz
         {
             TxtFullName.Text = "";
             TxtID.Text = "";
-            TxtPassword.Text = "";   // FIXED
+            TxtPassword.Text = "";  
         }
 
         private void ShowMessage(string message, bool isError)
