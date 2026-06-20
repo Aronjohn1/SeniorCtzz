@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"  WindowState="Maximized"  Background="#F5F5F5">
 
     <Window.Resources>
-        <!-- Nav Button - RED SIDEBAR -->
+ 
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="42"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -213,10 +213,10 @@
                             HorizontalAlignment="Center" Margin="0,4,0,20">
                         <TextBlock Text="Section Head" FontSize="10" Foreground="#B71C1C" HorizontalAlignment="Center"/>
                     </Border>
-                    <Button Content="⊞  DASHBOARD" Style="{StaticResource NavButtonStyle}" Click="BtnDashboard_Click"/>
-                    <Button Content="👥  Staff Accounts" Style="{StaticResource NavButtonStyle}" Click="BtnManageStaff_Click"/>
-                    <Button Content="📋  Pension List" Style="{StaticResource NavButtonActiveStyle}"/>
-                    <Button Content="📊  Reports" Style="{StaticResource NavButtonStyle}" Click="BtnReports_Click"/>
+                    <Button Content="  DASHBOARD" Style="{StaticResource NavButtonStyle}" Click="BtnDashboard_Click"/>
+                    <Button Content="  Staff Accounts" Style="{StaticResource NavButtonStyle}" Click="BtnManageStaff_Click"/>
+                    <Button Content="  Pension List" Style="{StaticResource NavButtonActiveStyle}"/>
+                    <Button Content="  Reports" Style="{StaticResource NavButtonStyle}" Click="BtnReports_Click"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Margin="16,0,16,20">
                     <Button Content="Logout" Style="{StaticResource LogoutButtonStyle}" Click="BtnLogout_Click"/>
@@ -225,7 +225,7 @@
             </DockPanel>
         </Border>
 
-        <!-- MAIN CONTENT -->
+  
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -274,7 +274,7 @@
 
                 <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <!-- BARANGAY LIST -->
+                
                         <Border x:Name="pnlBrgList" Visibility="Visible" Background="White"
                                 BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12">
                             <Border.Effect>
@@ -301,7 +301,7 @@
                             </DataGrid>
                         </Border>
 
-                        <!-- QUARTERLY - with Release Date and Status -->
+                   
                         <Border x:Name="pnlQuarterly" Visibility="Collapsed" Background="White"
                                 BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12">
                             <Border.Effect>
@@ -349,7 +349,7 @@
                             </Grid>
                         </Border>
 
-                        <!-- AICS -->
+                    
                         <Border x:Name="pnlAICS" Visibility="Collapsed" Background="White"
                                 BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12">
                             <Border.Effect>
@@ -382,7 +382,7 @@
                             </Grid>
                         </Border>
 
-                        <!-- APR -->
+                   
                         <Border x:Name="pnlAPR" Visibility="Collapsed" Background="White"
                                 BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12">
                             <Border.Effect>
@@ -415,7 +415,7 @@
                             </Grid>
                         </Border>
 
-                        <!-- BEREAVED -->
+                     
                         <Border x:Name="pnlBereaved" Visibility="Collapsed" Background="White"
                                 BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12">
                             <Border.Effect>
