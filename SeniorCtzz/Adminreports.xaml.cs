@@ -27,7 +27,7 @@ namespace SeniorCtzz
         private List<PensionItem> _aprData = new List<PensionItem>();
         private List<BereavedItem> _bereavdData = new List<BereavedItem>();
 
-        // Shared months array
+
         private static readonly string[] _months = {
             "Jan","Feb","Mar","Apr","May","Jun",
             "Jul","Aug","Sep","Oct","Nov","Dec"
@@ -71,7 +71,7 @@ namespace SeniorCtzz
             cmbReportBarangay.SelectedIndex = 0;
         }
 
-        // ── Builds the AS OF dropdown: 1500 → current month, no "ALL MONTHS" ──
+  
         private void LoadFilterMonths()
         {
             cmbReportAsOf.SelectionChanged -= FilterReport_SelectionChanged;
@@ -87,7 +87,7 @@ namespace SeniorCtzz
                     cmbReportAsOf.Items.Add(new ComboBoxItem { Content = $"{_months[m - 1]} {y}" });
             }
 
-            // Default: current month/year
+     
             foreach (ComboBoxItem item in cmbReportAsOf.Items)
             {
                 if (item.Content?.ToString() == _defaultMonthYear)
@@ -97,7 +97,7 @@ namespace SeniorCtzz
             cmbReportAsOf.SelectionChanged += FilterReport_SelectionChanged;
         }
 
-        // ── Same range for the Pension AS OF dropdown ──
+
         private void LoadPensionMonths()
         {
             cmbPensionAsOf.SelectionChanged -= PensionAsOf_SelectionChanged;
@@ -113,7 +113,7 @@ namespace SeniorCtzz
                     cmbPensionAsOf.Items.Add(new ComboBoxItem { Content = $"{_months[m - 1]} {y}" });
             }
 
-            // Default: current month/year
+   
             foreach (ComboBoxItem item in cmbPensionAsOf.Items)
             {
                 if (item.Content?.ToString() == _defaultMonthYear)
@@ -132,14 +132,14 @@ namespace SeniorCtzz
         private string GetPensionAsOf()
             => (cmbPensionAsOf?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _defaultMonthYear;
 
-        // ── Parses MM-dd-yy, MM-dd-yyyy, yyyy-MM-dd, etc. ──
+  
         private static bool TryParseRecordDate(string raw, out DateTime result)
         {
             result = DateTime.MinValue;
             if (string.IsNullOrWhiteSpace(raw)) return false;
 
             string[] formats = {
-                "MM-dd-yy",    // "05-19-26"  ← primary
+                "MM-dd-yy",   
                 "MM-dd-yyyy",
                 "M-d-yy",
                 "M-d-yyyy",
@@ -157,7 +157,7 @@ namespace SeniorCtzz
                 out result);
         }
 
-        // ── Converts "May 2026" → (5, 2026) ──
+     
         private static (int month, int year) ParseAsOfString(string asOf)
         {
             if (DateTime.TryParse("1 " + asOf, out DateTime dt))
@@ -165,7 +165,7 @@ namespace SeniorCtzz
             return (DateTime.Now.Month, DateTime.Now.Year);
         }
 
-        // ── Returns true if dateStr falls in the same month/year as asOf ──
+
         private static bool MatchAsOf(string dateStr, string asOf)
         {
             if (string.IsNullOrEmpty(dateStr)) return false;
@@ -254,7 +254,7 @@ namespace SeniorCtzz
             else
                 data = SeniorDB.GetByBarangay(brgy) ?? new ObservableCollection<BarangayListItem>();
 
-            // Always filter by selected month/year using DateIssued
+    
             data = new ObservableCollection<BarangayListItem>(
                 data.Where(item => MatchAsOf(item.DateIssued, asOf)));
 
@@ -345,13 +345,13 @@ namespace SeniorCtzz
         {
             string asOf = GetPensionAsOf();
 
-            // Filter all pension types by selected month/year
+     
             _quarterlyData = FilterPensionByAsOf(PensionDB.GetQuarterly()?.ToList() ?? new List<PensionItem>(), asOf);
             _aicsData = FilterPensionByAsOf(PensionDB.GetAICS()?.ToList() ?? new List<PensionItem>(), asOf);
             _aprData = FilterPensionByAsOf(PensionDB.GetAPR()?.ToList() ?? new List<PensionItem>(), asOf);
             _bereavdData = FilterBereavedByAsOf(PensionDB.GetBereaved()?.ToList() ?? new List<BereavedItem>(), asOf);
 
-            // Update card counts and amounts — label shows "As of [Month Year]"
+        
             string asOfLabel = $"As of {asOf}";
 
             txtCardQuarterly.Text = _quarterlyData.Count.ToString();
@@ -363,14 +363,14 @@ namespace SeniorCtzz
             txtCardBereaved.Text = _bereavdData.Count.ToString();
             txtCardBereavedAmount.Text = "₱" + BereavedTotalStr(_bereavdData);
 
-            // Update the AS OF label on the pension filter bar
+     
             if (TxtPensionAsOfLabel != null)
                 TxtPensionAsOfLabel.Text = asOfLabel;
 
             UpdatePensionCards();
         }
 
-        // ── Always filters — no "ALL MONTHS" bypass ──
+    
         private static List<PensionItem> FilterPensionByAsOf(List<PensionItem> data, string asOf)
             => data.Where(item => MatchAsOf(item.Date, asOf)).ToList();
 
