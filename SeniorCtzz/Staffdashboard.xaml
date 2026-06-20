@@ -10,7 +10,7 @@
         Background="#F9FAFB">
 
     <Window.Resources>
-        <!-- Nav Button Style - BLUE SIDEBAR -->
+
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="0,3,0,3"/>
@@ -185,7 +185,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- BLUE SIDEBAR -->
+  
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -224,7 +224,7 @@
                     </Border>
                 </StackPanel>
 
-                <!-- MIDDLE: Nav Buttons -->
+      
                 <StackPanel Grid.Row="1" Margin="16,0,16,0" VerticalAlignment="Top">
                     <Button Content="DASHBOARD"   Style="{StaticResource NavButtonActiveStyle}" Click="BtnDashboard_Click"/>
                     <Button Content="Register"    Style="{StaticResource NavButtonStyle}"       Click="BtnRegister_Click"/>
@@ -233,21 +233,21 @@
                     <Button Content="Reports"     Style="{StaticResource NavButtonStyle}"       Click="BtnReports_Click"/>
                 </StackPanel>
 
-                <!-- BOTTOM: Logout -->
+         
                 <StackPanel Grid.Row="2" Margin="16,0,16,20">
                     <Button Content="Logout" Style="{StaticResource LogoutButtonStyle}" Click="BtnLogout_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- MAIN CONTENT -->
+ 
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Background="#F9FAFB">
             <StackPanel Margin="32,28,32,28">
 
                 <TextBlock Text="DASHBOARD" FontSize="24" FontWeight="Bold"
                            Foreground="#111827" Margin="0,0,0,24"/>
 
-                <!-- STAT CARDS ROW 1 -->
+         
                 <Grid Margin="0,0,0,16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -279,7 +279,7 @@
                     </Border>
                 </Grid>
 
-                <!-- STAT CARDS ROW 2 -->
+        
                 <Grid Margin="0,0,0,28">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -311,7 +311,7 @@
                     </Border>
                 </Grid>
 
-                <!-- SEARCH -->
+     
                 <TextBlock Text="Search by Last or OSCA I.D." FontSize="12" FontWeight="SemiBold"
            Foreground="#374151" Margin="0,0,0,6"/>
                 <Grid Margin="0,0,0,4" Width="340" HorizontalAlignment="Left">
@@ -336,7 +336,7 @@
              FontSize="12" MaxHeight="120" SelectionChanged="SearchResultList_SelectionChanged"/>
                 </Border>
 
-                <!-- RECENT TRANSACTIONS - Same columns as Admin -->
+      
                 <TextBlock Text="Senior Citizens Pension Summary" FontSize="14" FontWeight="Bold"
            Foreground="#111827" Margin="0,0,0,10"/>
 
