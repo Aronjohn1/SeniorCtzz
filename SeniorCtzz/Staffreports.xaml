@@ -248,7 +248,7 @@
             </Setter>
         </Style>
 
-        <!-- ── Signature block label ── -->
+
         <Style x:Key="SigLabelStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -273,7 +273,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ══ BLUE SIDEBAR ══ -->
+
         <Border Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -313,7 +313,7 @@
             </DockPanel>
         </Border>
 
-        <!-- ══ MAIN AREA ══ -->
+    
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -323,7 +323,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Header bar -->
+       
             <Border Grid.Row="0" Background="White" BorderBrush="#E5E7EB"
                     BorderThickness="0,0,0,1" Padding="28,18,28,18">
                 <Grid>
@@ -344,7 +344,7 @@
                 </Grid>
             </Border>
 
-            <!-- Main tabs -->
+     
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
                 <Button x:Name="btnBarangayList" Content="BARANGAY LIST"
                         Style="{StaticResource MainTabActiveStyle}" Click="BtnBarangayList_Click"/>
@@ -354,7 +354,7 @@
                         Style="{StaticResource MainTabStyle}"       Click="BtnPension_Click"/>
             </StackPanel>
 
-            <!-- Pension sub-tabs -->
+ 
             <Border x:Name="pnlPensionSubTabs" Grid.Row="2" Margin="28,10,28,0"
                     Visibility="Collapsed" Background="White" BorderBrush="#E5E7EB"
                     BorderThickness="1" CornerRadius="10" Padding="10,8">
@@ -370,18 +370,16 @@
                 </StackPanel>
             </Border>
 
-            <!-- ══ CONTENT PANELS ══ -->
+     
             <ScrollViewer Grid.Row="3" Margin="28,14,28,0"
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <Grid>
 
-                    <!-- ══════════════════════════
-                         BARANGAY LIST
-                    ══════════════════════════ -->
+                 
                     <StackPanel x:Name="pnlBarangayList" Visibility="Visible">
 
-                        <!-- Filter bar -->
+          
                         <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
                                 CornerRadius="10" Padding="14,12" Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -401,7 +399,7 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Data table -->
+                
                         <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1"
                                 CornerRadius="12" Padding="0">
                             <Border.Effect>
@@ -432,8 +430,7 @@
                             </DataGrid>
                         </Border>
 
-                        <!-- ══ SIGNATURE BLOCK — Barangay List
-                             PREPARED BY | CHECKED BY | NOTED BY  ══ -->
+             
                         <Border Background="#F9FAFB" BorderBrush="#E5E7EB"
                                 BorderThickness="1" CornerRadius="10"
                                 Padding="20,16" Margin="0,16,0,16">
@@ -444,7 +441,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- PREPARED BY -->
+                        
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="PREPARED BY:"
                                                Style="{StaticResource SigLabelStyle}"/>
@@ -454,7 +451,7 @@
                                                Style="{StaticResource SigTitleStyle}"/>
                                 </StackPanel>
 
-                                <!-- CHECKED BY (Admin) -->
+                       
                                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                                     <TextBlock Text="CHECKED BY:"
                                                Style="{StaticResource SigLabelStyle}"/>
@@ -467,7 +464,7 @@
                                                HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <!-- NOTED BY -->
+                             
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Right">
                                     <TextBlock Text="NOTED BY:"
                                                Style="{StaticResource SigLabelStyle}"/>
@@ -482,9 +479,7 @@
                         </Border>
                     </StackPanel>
 
-                    <!-- ══════════════════════════
-                         OVER-ALL SC  (unchanged structure, kept as-is)
-                    ══════════════════════════ -->
+             
                     <StackPanel x:Name="pnlOverAllSC" Visibility="Collapsed">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                       VerticalScrollBarVisibility="Disabled">
@@ -775,7 +770,7 @@
                                         </Grid>
                                     </StackPanel>
                                 </Border>
-                                <!-- Signatures for Overall SC — already have prepared/noted  -->
+                            
                                 <Grid Grid.Row="2" Margin="0,10,0,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -845,13 +840,9 @@
                         </ScrollViewer>
                     </StackPanel>
 
-                    <!-- ══════════════════════════
-                         PENSION PANELS — each has a
-                         PREPARED BY | NOTED BY footer
-                         (no Checked By / Admin Aide II)
-                    ══════════════════════════ -->
+              
 
-                    <!-- Quarterly -->
+         
                     <StackPanel x:Name="pnlQuarterly" Visibility="Collapsed">
                         <TextBlock Text="Quarterly" FontSize="16" FontWeight="Bold"
                                    Foreground="#111827" Margin="0,0,0,10"/>
@@ -875,7 +866,7 @@
                                 <TextBlock x:Name="txtQuarterlyTotal" FontWeight="Bold" Foreground="#111827" FontSize="14"/>
                             </StackPanel>
                         </Border>
-                        <!-- Signature: PREPARED BY | NOTED BY -->
+                  
                         <Border Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
                                 CornerRadius="10" Padding="20,16" Margin="0,0,0,16">
                             <Grid>
@@ -899,7 +890,7 @@
                         </Border>
                     </StackPanel>
 
-                    <!-- AICS -->
+           
                     <StackPanel x:Name="pnlAICS" Visibility="Collapsed">
                         <TextBlock Text="AICS" FontSize="16" FontWeight="Bold"
                                    Foreground="#111827" Margin="0,0,0,10"/>
@@ -946,7 +937,7 @@
                         </Border>
                     </StackPanel>
 
-                    <!-- APR -->
+           
                     <StackPanel x:Name="pnlAPR" Visibility="Collapsed">
                         <TextBlock Text="APR" FontSize="16" FontWeight="Bold"
                                    Foreground="#111827" Margin="0,0,0,10"/>
@@ -993,7 +984,7 @@
                         </Border>
                     </StackPanel>
 
-                    <!-- BEREAVED -->
+             
                     <StackPanel x:Name="pnlBereaved" Visibility="Collapsed">
                         <TextBlock Text="BEREAVED" FontSize="16" FontWeight="Bold"
                                    Foreground="#111827" Margin="0,0,0,10"/>
@@ -1046,7 +1037,7 @@
                 </Grid>
             </ScrollViewer>
 
-            <!-- ══ EXPORT FOOTER ══ -->
+     
             <Border Grid.Row="4" Background="White" BorderBrush="#E5E7EB"
                     BorderThickness="0,1,0,0" Padding="28,14">
                 <Grid>
