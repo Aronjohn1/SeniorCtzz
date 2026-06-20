@@ -21,7 +21,7 @@ namespace SeniorCtzz
                 return;
             }
 
-            // ── Authenticate — returns user_id string, "" if failed ───
+        
             string loggedInId = StaffDB.Login(userId, password);
 
             if (string.IsNullOrEmpty(loggedInId))
@@ -30,14 +30,13 @@ namespace SeniorCtzz
                 return;
             }
 
-            // ── Store session ─────────────────────────────────────────
+       
             AppSession.UserId = loggedInId;
             AppSession.FullName = StaffDB.GetFullName(loggedInId);
             AppSession.Role = StaffDB.GetRole(loggedInId);
 
             HideError();
 
-            // ── Route by role ─────────────────────────────────────────
             switch (AppSession.Role)
             {
                 case "Staff Encoder":
