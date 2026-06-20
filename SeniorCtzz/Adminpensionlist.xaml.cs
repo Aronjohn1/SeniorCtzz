@@ -96,22 +96,22 @@ namespace SeniorCtzz
             }
         }
 
-        // ── Parses dates stored as MM-dd-yy, MM-dd-yyyy, yyyy-MM-dd, etc. ──
+    
         private static bool TryParseRecordDate(string raw, out DateTime result)
         {
             result = DateTime.MinValue;
             if (string.IsNullOrWhiteSpace(raw)) return false;
 
             string[] formats = {
-                "MM-dd-yy",    // "05-19-26"  ← primary format
-                "MM-dd-yyyy",  // "05-19-2026"
+                "MM-dd-yy",    
+                "MM-dd-yyyy",  
                 "M-d-yy",
                 "M-d-yyyy",
                 "MM/dd/yy",
                 "MM/dd/yyyy",
                 "M/d/yy",
                 "M/d/yyyy",
-                "yyyy-MM-dd",  // ISO
+                "yyyy-MM-dd",  
             };
 
             return DateTime.TryParseExact(
@@ -121,7 +121,7 @@ namespace SeniorCtzz
                 out result);
         }
 
-        // ── Parse the selected AS OF value into (month, year) ──
+
         private (int month, int year) ParseAsOf()
         {
             string asOf = GetSelectedAsOf();
@@ -289,7 +289,7 @@ namespace SeniorCtzz
                 else
                     data = SeniorDB.GetByBarangay(brgy) ?? new ObservableCollection<BarangayListItem>();
 
-                // Filter by DateIssued matching selected month/year
+               
                 data = new ObservableCollection<BarangayListItem>(
                     data.Where(d =>
                     {
@@ -315,23 +315,23 @@ namespace SeniorCtzz
 
                 foreach (var item in rawData)
                 {
-                    // Barangay filter
+              
                     if (brgy != "ALL BARANGAYS" &&
                         !string.Equals(item.Barangay, brgy, StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    // Parse registration date
+                
                     if (!TryParseRecordDate(item.Date, out DateTime registrationDate))
                         registrationDate = today;
 
-                    // AS OF filter — match registration date to selected month/year
+             
                     if (registrationDate.Month != filterMonth || registrationDate.Year != filterYear)
                         continue;
 
-                    // Compute release date (+3 months)
+               
                     DateTime releaseDate = registrationDate.AddMonths(3);
 
-                    // Status logic
+          
                     bool isReleased = today >= releaseDate;
                     DateTime firstOfReleaseMonth = new DateTime(releaseDate.Year, releaseDate.Month, 1);
                     DateTime firstOfUpcomingMonth = firstOfReleaseMonth.AddMonths(-1);
@@ -367,7 +367,7 @@ namespace SeniorCtzz
 
                 dgQuarterly.ItemsSource = result;
 
-                // Compute total from AdminQuarterlyItem
+             
                 decimal total = 0;
                 foreach (var r in result)
                     if (decimal.TryParse((r.Amount ?? "0").Replace(",", ""), out decimal v)) total += v;
