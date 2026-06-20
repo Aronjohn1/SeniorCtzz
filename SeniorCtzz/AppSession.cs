@@ -4,7 +4,7 @@ namespace SeniorCtzz
 {
     public static class AppSession
     {
-        public static string UserId { get; set; } = "";  // Changed from int to string
+        public static string UserId { get; set; } = "";  
         public static string FullName { get; set; } = "";
         public static string Role { get; set; } = "";
 
