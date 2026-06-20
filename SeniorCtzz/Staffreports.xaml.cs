@@ -30,14 +30,14 @@ namespace SeniorCtzz
         private List<PensionItem> _aprData = new List<PensionItem>();
         private List<BereavedItem> _bereavdData = new List<BereavedItem>();
 
-        // ── Encoder name used in all signature blocks ──────────────
+    
         private string EncoderName => (AppSession.FullName ?? "").ToUpper();
 
         public Staffreports()
         {
             InitializeComponent();
 
-            // Sidebar user info
+     
             txtUserName.Text = AppSession.FullName ?? "Staff User";
             txtAvatarInitials.Text = AppSession.GetInitials() ?? "SJ";
             txtUserRole.Text = "Staff Encoder";
@@ -48,9 +48,7 @@ namespace SeniorCtzz
             ShowBarangayList();
         }
 
-        // ═══════════════════════════════════════════
-        // FILTER SETUP
-        // ═══════════════════════════════════════════
+   
         private void LoadFilterBarangays()
         {
             string[] barangays = {
@@ -104,9 +102,7 @@ namespace SeniorCtzz
             if (_activeMain == MainTab.BarangayList) LoadBarangayData();
         }
 
-        // ═══════════════════════════════════════════
-        // TAB NAVIGATION
-        // ═══════════════════════════════════════════
+
         private void BtnBarangayList_Click(object sender, RoutedEventArgs e) => ShowBarangayList();
         private void BtnOverAllSC_Click(object sender, RoutedEventArgs e) => ShowOverAllSC();
         private void BtnPension_Click(object sender, RoutedEventArgs e) => ShowPension();
@@ -137,9 +133,7 @@ namespace SeniorCtzz
             btnBereaved.Style = (Style)FindResource("SubTabStyle");
         }
 
-        // ═══════════════════════════════════════════
-        // BARANGAY LIST
-        // ═══════════════════════════════════════════
+  
         private void ShowBarangayList()
         {
             HideAllPanels(); ResetTabs();
@@ -148,7 +142,7 @@ namespace SeniorCtzz
             btnBarangayList.Style = (Style)FindResource("MainTabActiveStyle");
             TxtSubtitle.Text = "Barangay List";
 
-            // Set encoder name in the on-screen signature block
+
             TxtBrgySigPreparedName.Text = EncoderName;
 
             LoadBarangayData();
@@ -160,12 +154,12 @@ namespace SeniorCtzz
             string brgy = GetFilterBarangay();
             string asOf = GetFilterAsOf();
 
-            // 1 — Get full list (all or filtered by barangay)
+      
             var raw = brgy == "ALL BARANGAYS"
                 ? (SeniorDB.GetAllSeniors() ?? new System.Collections.ObjectModel.ObservableCollection<BarangayListItem>()).ToList()
                 : (SeniorDB.GetByBarangay(brgy) ?? new System.Collections.ObjectModel.ObservableCollection<BarangayListItem>()).ToList();
 
-            // 2 — Filter by AS OF month/year using DateIssued
+    
             var (filterMonth, filterYear) = ParseAsOf(asOf);
             if (filterMonth > 0)
             {
@@ -181,10 +175,7 @@ namespace SeniorCtzz
             SetExportStatus($"Barangay List — {_barangayData.Count} record(s) | {(filterMonth > 0 ? asOf : "All Months")}");
         }
 
-        /// <summary>
-        /// Parses "MMM yyyy" (e.g. "May 2026") → (month, year).
-        /// Returns (0, 0) if parsing fails or string is empty.
-        /// </summary>
+  
         private static (int month, int year) ParseAsOf(string asOf)
         {
             if (string.IsNullOrWhiteSpace(asOf)) return (0, 0);
@@ -195,25 +186,22 @@ namespace SeniorCtzz
             return (0, 0);
         }
 
-        /// <summary>
-        /// Safely parses a date stored as "MM-dd-yy" (e.g. "05-19-26" → May 19 2026).
-        /// Also handles "MM-dd-yyyy", "MM/dd/yy", "MM/dd/yyyy" as fallbacks.
-        /// </summary>
+     
         private static bool TryParseRecordDate(string raw, out DateTime result)
         {
             result = DateTime.MinValue;
             if (string.IsNullOrWhiteSpace(raw)) return false;
 
             string[] formats = {
-                "MM-dd-yy",   // "05-19-26"  ← primary DB format
-                "MM-dd-yyyy", // "05-19-2026"
+                "MM-dd-yy",   
+                "MM-dd-yyyy", 
                 "M-d-yy",
                 "M-d-yyyy",
                 "MM/dd/yy",
                 "MM/dd/yyyy",
                 "M/d/yy",
                 "M/d/yyyy",
-                "yyyy-MM-dd", // ISO fallback
+                "yyyy-MM-dd", 
             };
 
             return DateTime.TryParseExact(
@@ -224,9 +212,7 @@ namespace SeniorCtzz
                 out result);
         }
 
-        // ═══════════════════════════════════════════
-        // OVER-ALL SC
-        // ═══════════════════════════════════════════
+   
         private void ShowOverAllSC()
         {
             HideAllPanels(); ResetTabs();
@@ -265,9 +251,7 @@ namespace SeniorCtzz
             SetExportStatus($"Overall SC report ready — {_overAllData.Count} classifications");
         }
 
-        // ═══════════════════════════════════════════
-        // PENSION
-        // ═══════════════════════════════════════════
+   
         private void ShowPension()
         {
             HideAllPanels(); ResetTabs();
@@ -299,7 +283,7 @@ namespace SeniorCtzz
                     _quarterlyData = PensionDB.GetQuarterly().ToList();
                     dgQuarterly.ItemsSource = _quarterlyData;
                     txtQuarterlyTotal.Text = TotalStr(_quarterlyData);
-                    // Set encoder name in on-screen sig block
+            
                     TxtPensionSigPreparedName.Text = EncoderName;
                     SetExportStatus($"Quarterly — {_quarterlyData.Count} records");
                     break;
@@ -336,9 +320,7 @@ namespace SeniorCtzz
             }
         }
 
-        // ═══════════════════════════════════════════
-        // EXPORT — PDF (print dialog)
-        // ═══════════════════════════════════════════
+ 
         private void BtnExportPdf_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -366,9 +348,7 @@ namespace SeniorCtzz
             catch (Exception ex) { MessageBox.Show($"Error: {ex.Message}"); }
         }
 
-        // ═══════════════════════════════════════════
-        // EXPORT — CSV
-        // ═══════════════════════════════════════════
+
         private void BtnExportCsv_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -388,9 +368,7 @@ namespace SeniorCtzz
             catch (Exception ex) { MessageBox.Show($"Error: {ex.Message}"); }
         }
 
-        // ═══════════════════════════════════════════
-        // CSV BUILDER
-        // ═══════════════════════════════════════════
+
         private string BuildCsv()
         {
             var sb = new StringBuilder();
@@ -493,9 +471,7 @@ namespace SeniorCtzz
             return sb.ToString();
         }
 
-        // ═══════════════════════════════════════════
-        // FLOW DOCUMENT (Print)
-        // ═══════════════════════════════════════════
+
         private FlowDocument BuildFlowDocument(double usableWidth = 1030)
         {
             var doc = new FlowDocument
@@ -518,16 +494,14 @@ namespace SeniorCtzz
             return doc;
         }
 
-        // ═══════════════════════════════════════════
-        // PRINT — OVERALL SC (signature already existed; unchanged)
-        // ═══════════════════════════════════════════
+
         private void BuildOverAllSCDocument(FlowDocument doc, string currentMonthYear, double usableW)
         {
             double noW = 40;
             double brgyW = 90;
             double colW = Math.Floor((usableW - noW - brgyW) / 12);
 
-            // ── Blue + Red header ──────────────────────────────────────
+    
             var headerTable = new Table { CellSpacing = 0, BorderThickness = new Thickness(0) };
             headerTable.Columns.Add(new TableColumn { Width = new GridLength(usableW) });
             var headerRG = new TableRowGroup();
@@ -617,7 +591,7 @@ namespace SeniorCtzz
             headerTable.RowGroups.Add(headerRG);
             doc.Blocks.Add(headerTable);
 
-            // ── Title ──────────────────────────────────────────────────
+       
             doc.Blocks.Add(new Paragraph
             {
                 TextAlignment = TextAlignment.Center,
@@ -700,7 +674,7 @@ namespace SeniorCtzz
             table.RowGroups.Add(rg);
             doc.Blocks.Add(table);
 
-            // ── Grand-total colour bars ────────────────────────────────
+           
             double gtBarW = colW * 2;
             double gtLeadW = noW + brgyW;
             var gtTable = new Table { CellSpacing = 0, BorderThickness = new Thickness(0), Margin = new Thickness(0, 3, 0, 0) };
@@ -719,18 +693,15 @@ namespace SeniorCtzz
             gtTable.RowGroups.Add(gtRG);
             doc.Blocks.Add(gtTable);
 
-            // ── Signatures: PREPARED BY | NOTED BY ────────────────────
+         
             doc.Blocks.Add(new Paragraph { Margin = new Thickness(0, 10, 0, 0), FontSize = 1 });
             BuildTwoColSignatures(doc, usableW, showCheckedBy: false);
 
-            // ── GOLD footer ────────────────────────────────────────────
+     
             BuildGoldFooter(doc, usableW);
         }
 
-        // ═══════════════════════════════════════════
-        // PRINT — BARANGAY LIST
-        //  Signatures: PREPARED BY | CHECKED BY | NOTED BY
-        // ═══════════════════════════════════════════
+  
         private void BuildBarangayListDocument(FlowDocument doc, double usableW = 1030)
         {
             string brgy = GetFilterBarangay();
@@ -740,14 +711,14 @@ namespace SeniorCtzz
             double tableW = widths.Sum();
             double centerM = Math.Max(0, (usableW - tableW) / 2);
 
-            // Header
+        
             var header = new Paragraph { TextAlignment = TextAlignment.Center, Margin = new Thickness(0, 0, 0, 6) };
             header.Inlines.Add(new Run("CSWD GINGOOG CITY") { FontSize = 14, FontWeight = FontWeights.Bold });
             header.Inlines.Add(new LineBreak());
             header.Inlines.Add(new Run("Barangay List Report") { FontSize = 11, FontWeight = FontWeights.SemiBold });
             doc.Blocks.Add(header);
 
-            // Filter label
+      
             var filterPara = new Paragraph
             {
                 TextAlignment = TextAlignment.Left,
@@ -766,7 +737,7 @@ namespace SeniorCtzz
             { FontSize = 9, FontWeight = FontWeights.Bold, Foreground = new SolidColorBrush(Color.FromRgb(15, 23, 42)) });
             doc.Blocks.Add(filterPara);
 
-            // Data table
+   
             string[] headers = { "NO", "LAST NAME", "FIRST NAME", "MIDDLE", "SFX", "SEX", "BIRTH DATE", "AGE", "STATUS", "OSCA ID", "ISSUED", "BLOOD", "LGU", "DSWD", "SSS", "GSIS", "WAIT" };
             var table = new Table
             {
@@ -806,7 +777,7 @@ namespace SeniorCtzz
             table.RowGroups.Add(rg);
             doc.Blocks.Add(table);
 
-            // Footer record count
+    
             doc.Blocks.Add(new Paragraph
             {
                 TextAlignment = TextAlignment.Right,
@@ -814,16 +785,12 @@ namespace SeniorCtzz
                 Inlines = { new Run($"Total Records: {_barangayData.Count} | Generated: {DateTime.Now:MM/dd/yyyy}") { FontSize = 8, Foreground = Brushes.Gray } }
             });
 
-            // ── THREE-COLUMN SIGNATURE BLOCK ──────────────────────────
-            // PREPARED BY  |  CHECKED BY  |  NOTED BY
+   
             doc.Blocks.Add(new Paragraph { Margin = new Thickness(0, 14, 0, 0), FontSize = 1 });
             BuildThreeColSignatures(doc, usableW);
         }
 
-        // ═══════════════════════════════════════════
-        // PRINT — PENSION
-        //  Signatures: PREPARED BY | NOTED BY  (no Checked By)
-        // ═══════════════════════════════════════════
+
         private void BuildPensionDocument(FlowDocument doc, double usableW = 1030)
         {
             string title = _activePension.ToString();
@@ -920,18 +887,12 @@ namespace SeniorCtzz
                 doc.Blocks.Add(table);
             }
 
-            // ── TWO-COLUMN SIGNATURE (Prepared By | Noted By) ─────────
+      
             doc.Blocks.Add(new Paragraph { Margin = new Thickness(0, 14, 0, 0), FontSize = 1 });
             BuildTwoColSignatures(doc, usableW, showCheckedBy: false);
         }
 
-        // ═══════════════════════════════════════════
-        // SIGNATURE HELPERS
-        // ═══════════════════════════════════════════
-
-        /// <summary>
-        /// Barangay List: PREPARED BY | CHECKED BY (Admin) | NOTED BY
-        /// </summary>
+   
         private void BuildThreeColSignatures(FlowDocument doc, double usableW)
         {
             double colW = usableW / 3;
@@ -943,21 +904,21 @@ namespace SeniorCtzz
             var rg = new TableRowGroup();
             var row = new TableRow();
 
-            // PREPARED BY (Left — encoder name from session)
+     
             row.Cells.Add(BuildSigCell(
                 label: "PREPARED BY:",
                 name: EncoderName,
                 title: "ENCODER",
                 align: TextAlignment.Left));
 
-            // CHECKED BY (Center — Admin)
+
             row.Cells.Add(BuildSigCell(
                 label: "CHECKED BY:",
                 name: "REBECCA A. REYES",
                 title: "ADMIN AIDE II",
                 align: TextAlignment.Center));
 
-            // NOTED BY (Right)
+
             row.Cells.Add(BuildSigCell(
                 label: "NOTED BY:",
                 name: "DAISY JANE R. ACERO, RSW",
@@ -969,10 +930,7 @@ namespace SeniorCtzz
             doc.Blocks.Add(t);
         }
 
-        /// <summary>
-        /// Overall SC / Pension: PREPARED BY | NOTED BY
-        /// Pass showCheckedBy = false for pension / overall SC.
-        /// </summary>
+ 
         private void BuildTwoColSignatures(FlowDocument doc, double usableW,
                                             bool showCheckedBy = false)
         {
@@ -993,7 +951,7 @@ namespace SeniorCtzz
             doc.Blocks.Add(t);
         }
 
-        /// <summary>Builds one signature cell (label + blank line + underlined name + title).</summary>
+
         private TableCell BuildSigCell(string label, string name, string title,
                                         TextAlignment align)
         {
@@ -1010,9 +968,7 @@ namespace SeniorCtzz
             return cell;
         }
 
-        // ═══════════════════════════════════════════
-        // GOLD FOOTER (Overall SC only)
-        // ═══════════════════════════════════════════
+ 
         private void BuildGoldFooter(FlowDocument doc, double usableW)
         {
             doc.Blocks.Add(new Paragraph { Margin = new Thickness(0, 8, 0, 0), FontSize = 1 });
@@ -1068,9 +1024,7 @@ namespace SeniorCtzz
             doc.Blocks.Add(footTable);
         }
 
-        // ═══════════════════════════════════════════
-        // TABLE CELL HELPERS
-        // ═══════════════════════════════════════════
+
         private TableCell MakeHeaderCell(string text, int colSpan = 1, int rowSpan = 1,
                                           Color? bgColor = null)
         {
@@ -1132,9 +1086,7 @@ namespace SeniorCtzz
             row.Cells.Add(cell);
         }
 
-        // ═══════════════════════════════════════════
-        // UTILITY
-        // ═══════════════════════════════════════════
+
         private static string TotalStr(List<PensionItem> items)
             => items.Sum(d => ParseDec(d.Amount)).ToString("N0");
         private static string BereavedTotalStr(List<BereavedItem> items)
@@ -1156,9 +1108,6 @@ namespace SeniorCtzz
         private void SetExportStatus(string msg)
         { if (TxtExportStatus != null) TxtExportStatus.Text = msg; }
 
-        // ═══════════════════════════════════════════
-        // NAVIGATION
-        // ═══════════════════════════════════════════
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         { new Staffdashboard().Show(); Close(); }
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
